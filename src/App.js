@@ -5,7 +5,6 @@ function App() {
   return (
     <>
         <Header />
-      <p>hello, world!</p>
     </>
   );
 }
