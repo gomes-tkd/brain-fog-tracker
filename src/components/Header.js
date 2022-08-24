@@ -1,13 +1,43 @@
-import React from 'react';
-import {Nav, Navbar, NavItem} from "reactstrap";
-import styles from "./Header.module.css";
+import { useState } from 'react';
+import {
+    Collapse,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavbarToggler,
+    NavItem,
+    NavLink
+} from "reactstrap";
 
 const Header = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
+
     return (
         <Navbar
-            className={styles.header}
+            color={'light'}
+            expand={'md'}
+            container
+            light
+
         >
-                Fog Tracker
+            <NavbarBrand>Fog Tracker</NavbarBrand>
+            <NavbarToggler onClick={toggle}/>
+            <Collapse isOpen={isOpen} navbar>
+                <Nav className={'me-auto'} navbar>
+                </Nav>
+                <Nav navbar>
+                    <NavItem>
+                        <NavLink href={'#'}>Link</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href={'#'}>Menu</NavLink>
+                    </NavItem>
+                </Nav>
+            </Collapse>
+
         </Navbar>
     );
 };
