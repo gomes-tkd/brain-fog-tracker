@@ -7,7 +7,7 @@ const Header = () => {
         <Navbar
             className={styles.header}
         >
-                Univentory
+                Fog Tracker
         </Navbar>
     );
 };
