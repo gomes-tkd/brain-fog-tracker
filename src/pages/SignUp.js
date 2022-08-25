@@ -1,23 +1,48 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght100_GRAD200_opsz24.svg';
 import {Button, Col, Container, FormGroup, Input, Row} from 'reactstrap';
 import { auth, createUser} from "../Firebase";
 import { NavLink } from "react-router-dom";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    async function createNewUser() {
 
-        try {
-             createUser(email, password);
-        } catch (e) {
-            setError(e);
+        if (!email || !password) {
+            setError('Email or password is required');
+            return;
         }
 
+        try {
+            const user = await createUserWithEmailAndPassword(auth, email, password);
+            if (!user) {
+                setError('Something went wrong');
+
+            }
+        } catch (e) {
+            const msg = e.message;
+            const code = e.code;
+            console.log(msg);
+            console.log(code);
+            setError('Email already exists');
+        }
+
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        //createNewUser();
+
+        try {
+            createUser(email, password);
+        } catch (e) {
+            setError(e.message);
+        }
     }
 
     return (
@@ -60,11 +85,7 @@ const SignUp = () => {
                             SIGN UP
                         </Button>
                     </form>
-                    {error && (
-                        <p style={{color: '#f00'}}>
-                            {error}
-                        </p>
-                    )}
+                    {error && <p style={{color: '#f00'}}>{error}</p>}
                     <NavLink
                         to={'/login'}
                     >

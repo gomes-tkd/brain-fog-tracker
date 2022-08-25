@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import SignUp from './pages/SignUp';
 import LogIn from "./pages/LogIn";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import UserPage from "./pages/UserPage";
 
 const PrivateRoute = (props) => {
@@ -16,13 +16,15 @@ function App() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    onAuthStateChanged(auth, user => {
-        if (user) {
-            setIsAuthenticated(true);
-        } else {
-            setIsAuthenticated(false);
-        }
-    });
+    useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                setIsAuthenticated(true);
+            } else {
+                setIsAuthenticated(false);
+            }
+        });
+    }, [auth]);
 
   return (
     <BrowserRouter>
