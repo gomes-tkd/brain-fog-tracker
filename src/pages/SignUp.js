@@ -1,16 +1,23 @@
 import { useState } from 'react';
-import { ReactComponent as SignInImg } from '../assets/imgs/lock_FILL0_wght100_GRAD200_opsz24.svg';
+import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght100_GRAD200_opsz24.svg';
 import {Button, Col, Container, FormGroup, Input, Row} from 'reactstrap';
-import { createUser} from "../Firebase";
+import { auth, createUser} from "../Firebase";
 import { NavLink } from "react-router-dom";
 
-const SigIn = () => {
+const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+
+        try {
+             createUser(email, password);
+        } catch (e) {
+            setError(e);
+        }
+
     }
 
     return (
@@ -27,7 +34,7 @@ const SigIn = () => {
                     }}
                     sm="12"
                 >
-                    <SignInImg />
+                    <SignUpImg />
                     <h1 className={'mt-4'}>Sign up</h1>
                     <form onSubmit={handleSubmit}  className={'mt-4'}>
                         <FormGroup>
@@ -48,7 +55,6 @@ const SigIn = () => {
                         </FormGroup>
                         <Button
                             className={'mt-4 mb-3'}
-                            onClick={() => createUser(email, password)}
                             color={'primary'}
                         >
                             SIGN UP
@@ -56,7 +62,7 @@ const SigIn = () => {
                     </form>
                     {error && (
                         <p style={{color: '#f00'}}>
-                            There is no user record corresponding to this identifier. The user may have been deleted.
+                            {error}
                         </p>
                     )}
                     <NavLink
@@ -70,4 +76,7 @@ const SigIn = () => {
     );
 };
 
-export default SigIn;
+export default SignUp;
+
+
+{/*onClick = {() => createUser(email, password)}*/}
