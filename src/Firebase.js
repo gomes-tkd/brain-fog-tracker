@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from 'firebase/auth';
-import {NavLink} from "react-router-dom";
+import { useState } from "react";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo',
@@ -35,6 +35,7 @@ export async function createUser(email, password) {
 }
 
 export async function logInUser(email, password) {
+
     await signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             const user = userCredential.user;

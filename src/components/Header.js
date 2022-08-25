@@ -32,7 +32,7 @@ const Header = ({ isAuthenticated }) => {
                         <NavLink href={'#'}>Link</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to={'user'}>{isAuthenticated ? 'Usuário' : 'Menu'}</NavLink>
+                        <NavLink href={'/signup'}>Menu</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>
