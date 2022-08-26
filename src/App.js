@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import LogIn from "./pages/LogIn";
 import { useState } from "react";
 import UserPage from "./pages/UserPage";
+import ResetPassword from "./pages/ResetPassword";
 
 const PrivateRoute = (props) => {
     return props.isAuthenticated ? props.children : <LogIn />
@@ -33,12 +34,13 @@ function App() {
         <Routes>
             {/* TODO EG: Os components de signup and login nao consomem isAuthenticated. Entao, pq ta passando ele? */}
             <Route path={'/signup'} element={<SignUp />} isAuthenticated={isAuthenticated} />
-            <Route path={'/login'} element={<LogIn />} isAuthenticated={isAuthenticated} />
+            <Route path={'/'} element={<LogIn />} isAuthenticated={isAuthenticated} />
             <Route path={'/user'} element={(
                 <PrivateRoute isAuthenticated={isAuthenticated}>
                     <UserPage />
                 </PrivateRoute>
             )} />
+            <Route path={'/reset-password'} element={<ResetPassword />}/>
         </Routes>
     </BrowserRouter>
   );

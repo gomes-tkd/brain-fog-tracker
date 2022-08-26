@@ -44,7 +44,7 @@ const LogIn = () => {
             </form>
             {error && <p style={{color: '#f00'}}>{ error }</p>}
 
-            <NavLink to={'/login'}>Reset your password</NavLink>
+            <NavLink to={'/reset-password'}>Reset your password</NavLink>
             <NavLink to={'/signup'}>Sign up</NavLink>
         </div>
     );

@@ -84,11 +84,7 @@ const SignUp = () => {
                         </Button>
                     </form>
                     {error && <p style={{color: '#f00'}}>{error}</p>}
-                    <NavLink
-                        to={'/login'}
-                    >
-                        Log in
-                    </NavLink>
+                    <NavLink to={'/'}>Log in</NavLink>
                 </Col>
             </Row>
         </Container>
