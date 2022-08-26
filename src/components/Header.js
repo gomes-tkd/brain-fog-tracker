@@ -9,10 +9,9 @@ import {
     NavLink
 } from "reactstrap";
 
-const Header = () => {
+const Header = ({ isAuthenticated }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
 
     return (
@@ -33,11 +32,10 @@ const Header = () => {
                         <NavLink href={'#'}>Link</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href={'#'}>Menu</NavLink>
+                        <NavLink href={'/signup'}>Menu</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>
-
         </Navbar>
     );
 };
