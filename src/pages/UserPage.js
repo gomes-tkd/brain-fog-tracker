@@ -4,7 +4,7 @@ import { logOut } from "../Firebase";
 const UserPage = () => {
     return (
         <button onClick={logOut}>
-            sair
+            Sair
         </button>
     );
 };

@@ -5,7 +5,6 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from 'firebase/auth';
-import { useState } from 'react';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo',
@@ -21,66 +20,25 @@ export const auth = getAuth(app);
 export const currentUser = auth.currentUser;
 
 export async function createUser(email, password) {
-    if (!email || !password) {
-        throw 'Email or password is invalid';
-    }
+  if (!email || !password) {
+    throw new Error("Email or password is invalid");
+  }
 
-    await createUserWithEmailAndPassword(auth, email, password)
-        .then(currentUser => {
-            const user = currentUser.user;
+  if (currentUser) {
+    throw new Error("User already exists");
+  }
 
-            if (!user) {
-                throw 'Something went wrong';
-            }
+  const response = await createUserWithEmailAndPassword(auth, email, password);
 
-            if (!user.uid) {
-                throw 'Something went wrong uid';
-            }
-        })
-        .catch(err => console.log(err.message));
+  const userResponse = await response.user;
+  if (!userResponse) {
+    throw new Error("Something went wrong creating the user");
+  }
 
-/*
-    if (!email || !password) {
-        throw 'Email or password is invalid.';
-    }
-
-    if (currentUser) {
-        throw 'User already exists.';
-    }
-
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    const userResponse = await response.user;
-
-    if (!userResponse) {
-        throw 'Something went wrong creating the user.';
-    }
-
-    const userUID = userResponse.uid;
-
-    if (!userUID) {
-        throw 'Something went wrong creating the uid.';
-    }
-*/
-    // if(!email || !password) {
-    //     throw new Error('Email or password invalid firebase');
-    // }
-    //
-    // if (currentUser) {
-    //     throw new Error('Already logged in');
-    // }
-    //
-    // const response = await createUserWithEmailAndPassword(auth, email, password);
-    // const userResponse = response.user;
-    //
-    // if (!userResponse.isAuthenticated()) {
-    //     throw new Error('Something went wrong: user response');
-    // }
-    //
-    // const userUID = userResponse.uid;
-    //
-    // if (!userResponse.uid) {
-    //     throw new Error('invalid userUID');
-    // }
+  const userUID = userResponse.uid;
+  if (!userUID) {
+    throw new Error("Something went wrong creating the uid");
+  }
 }
 
 export async function logInUser(email, password) {
