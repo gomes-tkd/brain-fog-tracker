@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght100_GRAD200_opsz24.svg';
+import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg';
 import { Button, Col, Container, FormGroup, Input, Row } from 'reactstrap';
 import { auth, createUser} from "../Firebase";
 import { NavLink } from "react-router-dom";
@@ -33,10 +33,10 @@ const SignUp = () => {
 
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         try {
-            createUser(email, password);
+            await createUser(email, password);
         } catch (e) {
             setError(e.message);
         }
@@ -57,7 +57,7 @@ const SignUp = () => {
                     sm="12"
                 >
                     <SignUpImg />
-                    <h1 className={'mt-4'}>Sign up</h1>
+                    <h2 className={'mt-4'}>Sign up</h2>
                     <form onSubmit={handleSubmit}  className={'mt-4'}>
                         <FormGroup>
                             <Input
@@ -78,6 +78,7 @@ const SignUp = () => {
                         <Button
                             className={'mt-4 mb-3'}
                             color={'primary'}
+                            block
                         >
                             SIGN UP
                         </Button>
