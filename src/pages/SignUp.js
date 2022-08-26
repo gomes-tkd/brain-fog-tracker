@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght100_GRAD200_opsz24.svg';
-import {Button, Col, Container, FormGroup, Input, Row} from 'reactstrap';
+import { Button, Col, Container, FormGroup, Input, Row } from 'reactstrap';
 import { auth, createUser} from "../Firebase";
 import { NavLink } from "react-router-dom";
 import {createUserWithEmailAndPassword} from "firebase/auth";
@@ -35,9 +35,6 @@ const SignUp = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        //createNewUser();
-
         try {
             createUser(email, password);
         } catch (e) {
@@ -98,6 +95,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-
-{/*onClick = {() => createUser(email, password)}*/}

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import SignUp from './pages/SignUp';
 import LogIn from "./pages/LogIn";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import UserPage from "./pages/UserPage";
 
 const PrivateRoute = (props) => {
@@ -16,20 +16,22 @@ function App() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                setIsAuthenticated(true);
-            } else {
-                setIsAuthenticated(false);
-            }
-        });
-    }, [auth]);
+  // TODO EG tem que estar no primeiro nivel, pq eh um "listener" pro estado da authenticacao.
+  // vc quer que toda a vez que ela mudar, ele fique sabendo, entao nao faz sentido colocar num useEffect
+  // na verdade, tanto faz, mas, assim fica mais natural (tipo, pq complicar se da pra ser mais simples?)
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  });
 
   return (
     <BrowserRouter>
         <Header isAuthenticated={isAuthenticated}/>
         <Routes>
+            {/* TODO EG: Os components de signup and login nao consomem isAuthenticated. Entao, pq ta passando ele? */}
             <Route path={'/signup'} element={<SignUp />} isAuthenticated={isAuthenticated} />
             <Route path={'/login'} element={<LogIn />} isAuthenticated={isAuthenticated} />
             <Route path={'/user'} element={(

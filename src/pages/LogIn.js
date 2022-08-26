@@ -13,8 +13,6 @@ const LogIn = () => {
         e.preventDefault();
     }
 
-//    setError('There is no user record corresponding to this identifier. The user may have been deleted.');
-
     return (
         <div>
             <SignInImg />
