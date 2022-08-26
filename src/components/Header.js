@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { logOut } from "../Firebase";
 import {
-    Collapse,
+    Collapse, DropdownItem, DropdownMenu, DropdownToggle,
     Nav,
     Navbar,
     NavbarBrand,
     NavbarToggler,
     NavItem,
-    NavLink
+    NavLink, UncontrolledDropdown
 } from "reactstrap";
 
 const Header = ({ isAuthenticated }) => {
@@ -20,7 +21,6 @@ const Header = ({ isAuthenticated }) => {
             expand={'md'}
             container
             light
-
         >
             <NavbarBrand>Fog Tracker</NavbarBrand>
             <NavbarToggler onClick={toggle}/>
@@ -31,9 +31,26 @@ const Header = ({ isAuthenticated }) => {
                     <NavItem>
                         <NavLink href={'#'}>Link</NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink href={'/signup'}>Menu</NavLink>
-                    </NavItem>
+                    { isAuthenticated ? (
+                        <UncontrolledDropdown inNavbar>
+                            <DropdownToggle nav caret>
+                                Menu
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem>
+                                    <button
+                                        onClick={logOut}
+                                    >
+                                        Sair
+                                    </button>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                    ) : (
+                        <NavItem>
+                            <NavLink href={'/signup'}>Menu</NavLink>
+                        </NavItem>
+                    )}
                 </Nav>
             </Collapse>
         </Navbar>

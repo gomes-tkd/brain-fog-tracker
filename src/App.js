@@ -29,11 +29,19 @@ function App() {
 
   return (
     <BrowserRouter>
-        <Header isAuthenticated={isAuthenticated}/>
+        <Header isAuthenticated={isAuthenticated} />
         <Routes>
             {/* TODO EG: Os components de signup and login nao consomem isAuthenticated. Entao, pq ta passando ele? */}
-            <Route path={'/signup'} element={<SignUp />} isAuthenticated={isAuthenticated} />
-            <Route path={'/login'} element={<LogIn />} isAuthenticated={isAuthenticated} />
+            <Route path={'/signup'} element={(
+                <PrivateRoute isAuthenticated={isAuthenticated}>
+                    <SignUp />
+                </PrivateRoute>
+            )} />
+            <Route path={'/login'} element={(
+                <PrivateRoute isAuthenticated={isAuthenticated}>
+                    <LogIn />
+                </PrivateRoute>
+            )} />
             <Route path={'/user'} element={(
                 <PrivateRoute isAuthenticated={isAuthenticated}>
                     <UserPage />
