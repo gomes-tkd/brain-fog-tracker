@@ -4,9 +4,10 @@ import { auth } from './Firebase';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import SignUp from './pages/SignUp';
-import LogIn from './pages/LogIn';
-import { useState } from 'react';
-import UserPage from './pages/UserPage';
+import LogIn from "./pages/LogIn";
+import { useState } from "react";
+import UserPage from "./pages/UserPage";
+import ResetPassword from "./pages/ResetPassword";
 
 const PrivateRoute = (props) => {
     return props.isAuthenticated ? props.children : <LogIn />
@@ -27,7 +28,6 @@ function App() {
     <BrowserRouter>
         <Header isAuthenticated={isAuthenticated} />
         <Routes>
-            {/* TODO EG: Os components de signup and login nao consomem isAuthenticated. Entao, pq ta passando ele? */}
             <Route path={'/signup'} element={(
                 <PrivateRoute isAuthenticated={isAuthenticated}>
                     <SignUp />
@@ -43,6 +43,7 @@ function App() {
                     <UserPage />
                 </PrivateRoute>
             )} />
+            <Route path={'/reset-password'} element={<ResetPassword />}/>
         </Routes>
     </BrowserRouter>
   );
