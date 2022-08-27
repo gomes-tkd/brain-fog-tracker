@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ReactComponent as SignInImg } from '../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg';
-import {Button, Col, Container, FormGroup, Input, Row} from 'reactstrap';
-import { logInUser } from '../Firebase';
-import { NavLink } from 'react-router-dom';
+import { ReactComponent as SignInImg } from "../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg";
+import { Button, Col, Container, FormGroup, Input, Row } from "reactstrap";
+import { logInUser } from "../Firebase";
+import { NavLink } from "react-router-dom";
 
 const LogIn = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const LogIn = () => {
         try {
             await logInUser(email, password);
         } catch (e) {
-            setError(e.message);
+            setError(e.message)
         }
     }
 
@@ -26,12 +26,12 @@ const LogIn = () => {
         >
             <Row>
                 <Col
-                    className='text-center'
+                    className="text-center"
                     md={{
                         offset: 4,
                         size: 4
                     }}
-                    sm='12'
+                    sm="12"
                 >
                     <SignInImg />
                     <h2 className={'mt-4'}>Log in</h2>
@@ -60,24 +60,15 @@ const LogIn = () => {
                             LOG IN
                         </Button>
                     </form>
-                    {error && (
-                        <p
-                            style={{color: '#f00'}}
-                            className={'mt-4'}
-                        >
-                            {error}
-                        </p>
-                    )}
+                    {error && <p style={{color: '#f00'}}>{ error }</p>}
+
+                    <NavLink to={'/login'}>Reset your password</NavLink>
+                    <NavLink to={'/signup'}>Sign up</NavLink>
                 </Col>
-            </Row>
-            <Row className={'text-center mt-3'}>
-                <NavLink to={'/reset-password'}>Reset your password</NavLink>
-            </Row>
-            <Row className={'text-center mt-3'}>
-                <NavLink to={'/signup'}>Sign up </NavLink>
             </Row>
         </Container>
     );
 };
 
 export default LogIn;
+
