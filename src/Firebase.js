@@ -40,7 +40,6 @@ export async function createUser(email, password) {
     if (!userUID) {
         throw new Error("Something went wrong creating the uid.");
     }
-
 }
 
 export async function logInUser(email, password) {

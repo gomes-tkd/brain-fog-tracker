@@ -1,7 +1,7 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg';
 import { Button, Col, Container, FormGroup, Input, Row } from 'reactstrap';
-import { createUser } from "../Firebase";
+import { auth, createUser} from "../Firebase";
 import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
@@ -33,7 +33,7 @@ const SignUp = () => {
                     sm="12"
                 >
                     <SignUpImg />
-                    <h1 className={'mt-4'}>Sign up</h1>
+                    <h2 className={'mt-4'}>Sign up</h2>
                     <form onSubmit={handleSubmit}  className={'mt-4'}>
                         <FormGroup>
                             <Input

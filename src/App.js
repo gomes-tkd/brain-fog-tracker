@@ -13,20 +13,15 @@ const PrivateRoute = (props) => {
 };
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    // TODO EG tem que estar no primeiro nivel, pq eh um "listener" pro estado da authenticacao.
-    // vc quer que toda a vez que ela mudar, ele fique sabendo, entao nao faz sentido colocar num useEffect
-    // na verdade, tanto faz, mas, assim fica mais natural (tipo, pq complicar se da pra ser mais simples?)
-
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                setIsAuthenticated(true);
-            } else {
-                setIsAuthenticated(false);
-            }
-        });
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  });
 
   return (
     <BrowserRouter>
