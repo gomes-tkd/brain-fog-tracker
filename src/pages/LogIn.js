@@ -5,9 +5,9 @@ import { logInUser } from "../Firebase";
 import { NavLink } from "react-router-dom";
 
 const LogIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault();
