@@ -1,5 +1,5 @@
 import React from 'react';
-import { logOut } from "../Firebase";
+import { logOut } from '../Firebase';
 
 const UserPage = () => {
     return (

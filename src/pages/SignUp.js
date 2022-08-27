@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ReactComponent as SignUpImg } from '../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg';
 import { Button, Col, Container, FormGroup, Input, Row } from 'reactstrap';
-import { auth, createUser} from "../Firebase";
-import { NavLink } from "react-router-dom";
+import { createUser } from '../Firebase';
+import { NavLink } from 'react-router-dom';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -25,12 +25,12 @@ const SignUp = () => {
         >
             <Row>
                 <Col
-                    className="text-center"
+                    className='text-center'
                     md={{
                         offset: 4,
                         size: 4
                     }}
-                    sm="12"
+                    sm='12'
                 >
                     <SignUpImg />
                     <h2 className={'mt-4'}>Sign up</h2>
@@ -60,11 +60,7 @@ const SignUp = () => {
                         </Button>
                     </form>
                     {error && <p style={{color: '#f00'}}>{error}</p>}
-                    <NavLink
-                        to={'/login'}
-                    >
-                        Log in
-                    </NavLink>
+                    <NavLink to={'/'}>Log in</NavLink>
                 </Col>
             </Row>
         </Container>
