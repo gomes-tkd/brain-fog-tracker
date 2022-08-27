@@ -3,6 +3,7 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendPasswordResetEmail,
     signOut
 } from "firebase/auth";
 
@@ -74,4 +75,19 @@ export async function logOut() {
             console.log("error code sing out: ", errorCode);
             console.log("error message sign out: ", errorMessage);
         })
+}
+
+export async function resetPassword(email) {
+    if (!email) {
+        throw new Error('Email is required.');
+    }
+
+    const response = await sendPasswordResetEmail(auth, email);
+
+    /*
+    if(!response) {
+        throw new Error('Something went wrong sending password reset email.');
+    }
+    */
+
 }
