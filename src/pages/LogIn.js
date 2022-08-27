@@ -60,11 +60,14 @@ const LogIn = () => {
                             LOG IN
                         </Button>
                     </form>
-                    {error && <p style={{color: '#f00'}}>{ error }</p>}
-
-                    <NavLink to={'/login'}>Reset your password</NavLink>
-                    <NavLink to={'/signup'}>Sign up</NavLink>
+                    {error && <p className={'text-danger mt-3'}>{ error }</p>}
                 </Col>
+            </Row >
+            <Row className={'mt-3 text-center'}>
+                <NavLink to={'/reset-password'}>Reset your password</NavLink>
+            </Row>
+            <Row className={'mt-3 text-center'}>
+                <NavLink to={'/signup'}>Sign up</NavLink>
             </Row>
         </Container>
     );
