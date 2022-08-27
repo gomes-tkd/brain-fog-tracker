@@ -7,7 +7,7 @@ import {
     NavbarToggler,
     NavItem,
     NavLink
-} from "reactstrap";
+} from 'reactstrap';
 
 const Header = ({ isAuthenticated }) => {
 
