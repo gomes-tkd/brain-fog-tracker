@@ -6,7 +6,7 @@ import {
     sendPasswordResetEmail,
     signOut
 } from "firebase/auth";
-
+import { addDoc, getFirestore, collection } from "firebase/firestore";
 const firebaseConfig = {
     apiKey: "AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo",
     authDomain: "fog-tracker.firebaseapp.com",
@@ -19,6 +19,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const currentUser = auth.currentUser;
+const db = getFirestore(app);
+const symptomCollectionRef = collection(db, 'symptoms');
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -83,11 +85,16 @@ export async function resetPassword(email) {
     }
 
     const response = await sendPasswordResetEmail(auth, email);
-
-    /*
-    if(!response) {
-        throw new Error('Something went wrong sending password reset email.');
-    }
-    */
-
 }
+
+export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date) {
+    await addDoc(symptomCollectionRef, {
+       fogginess,
+       anxiety,
+       headache,
+       fatigue,
+       gut,
+       date
+    });
+}
+
