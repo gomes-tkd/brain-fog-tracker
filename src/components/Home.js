@@ -17,11 +17,11 @@ import {registerSymptom} from "../Firebase";
 const Home = () => {
 
     const [modal, setModal] = useState(false);
-    const [fogginess, setFogginess] = useState('');
-    const [anxiety,setAnxiety] = useState('');
-    const [headache, setHeadache] = useState('');
-    const [fatigue, setFatigue] = useState('');
-    const [gut, setGut] = useState('');
+    const [fogginess, setFogginess] = useState(0);
+    const [anxiety,setAnxiety] = useState(0);
+    const [headache, setHeadache] = useState(0);
+    const [fatigue, setFatigue] = useState(0);
+    const [gut, setGut] = useState(0);
     const date = new Date();
 
     const toggle = () => setModal(!modal);
@@ -49,11 +49,8 @@ const Home = () => {
                 </Row>
             </Container>
 
-            <Modal isOpen={modal} toggle={toggle} className={'align-items-center justify-content-center'}>
-                <ModalHeader
-                    toggle={toggle}
-                    className={'align-items-center justify-content-center text-center'}
-                >
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader toggle={toggle}>
                     NEW SYMPTOM
                 </ModalHeader>
                 <ModalBody>
@@ -72,7 +69,7 @@ const Home = () => {
                                     name="fogginess"
                                     type="range"
                                     plaintext
-                                    onChange={({ target }) => setFogginess(target.value)}
+                                    onChange={({ target }) => setFogginess(+target.value)}
                                 />
                             </Col>
                         </FormGroup>
@@ -89,7 +86,7 @@ const Home = () => {
                                     id="anxiety"
                                     name="anxiety"
                                     type="range"
-                                    onChange={({ target }) => setAnxiety(target.value)}
+                                    onChange={({ target }) => setAnxiety(+target.value)}
                                     plaintext
                                 />
                             </Col>
@@ -108,7 +105,7 @@ const Home = () => {
                                     name="headache"
                                     type="range"
                                     plaintext
-                                    onChange={({ target }) => setHeadache(target.value)}
+                                    onChange={({ target }) => setHeadache(+target.value)}
                                 />
                             </Col>
                         </FormGroup>
@@ -126,7 +123,7 @@ const Home = () => {
                                     name="fatigue"
                                     type="range"
                                     plaintext
-                                    onChange={({ target }) => setFatigue(target.value)}
+                                    onChange={({ target }) => setFatigue(+target.value)}
                                 />
                             </Col>
                         </FormGroup>
@@ -144,7 +141,7 @@ const Home = () => {
                                     name="gut"
                                     type="range"
                                     plaintext
-                                    onChange={({ target }) => setGut(target.value)}
+                                    onChange={({ target }) => setGut(+target.value)}
                                 />
                             </Col>
                         </FormGroup>
