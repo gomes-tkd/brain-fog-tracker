@@ -9,6 +9,7 @@ import { useState } from "react";
 import ResetPassword from "./pages/ResetPassword";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
+import Symptoms from "./pages/Symptoms";
 
 const PrivateRoute = (props) => {
     return props.isAuthenticated ? props.children : <LogIn />

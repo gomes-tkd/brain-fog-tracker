@@ -34,7 +34,7 @@ const Header = ({ isAuthenticated }) => {
                     { isAuthenticated ? (
                         <UncontrolledDropdown inNavbar>
                             <DropdownToggle nav caret>
-                                Menu
+                                Account
                             </DropdownToggle>
                             <DropdownMenu end>
                                 <DropdownItem>
