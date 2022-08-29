@@ -59,8 +59,8 @@ const SignUp = () => {
                             SIGN UP
                         </Button>
                     </form>
-                    {error && <p style={{color: '#f00'}}>{error}</p>}
-                    <NavLink to={'/'}>Log in</NavLink>
+                    {error && <p  className={'text-danger'}>{error}</p>}
+                    <NavLink to={'/login'}>Log in</NavLink>
                 </Col>
             </Row>
         </Container>

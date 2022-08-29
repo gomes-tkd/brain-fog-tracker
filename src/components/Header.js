@@ -36,7 +36,7 @@ const Header = ({ isAuthenticated }) => {
                             <DropdownToggle nav caret>
                                 Menu
                             </DropdownToggle>
-                            <DropdownMenu right>
+                            <DropdownMenu end>
                                 <DropdownItem>
                                     <button
                                         onClick={logOut}
