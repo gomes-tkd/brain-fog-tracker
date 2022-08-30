@@ -3,9 +3,6 @@ import {
     Button,
     Col,
     Container, Form,
-    FormGroup,
-    Input,
-    Label,
     Modal,
     ModalBody,
     ModalFooter,
@@ -13,6 +10,7 @@ import {
     Row
 } from "reactstrap";
 import {registerSymptom} from "../Firebase";
+import Symptoms from "../pages/Symptoms";
 
 const Home = () => {
 
@@ -55,96 +53,11 @@ const Home = () => {
                 </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
-                        <FormGroup row className={'align-items-center text-center justify-content-center'}>
-                            <Label
-                                for="fogginess"
-                                size="md"
-                                sm={3}
-                            >
-                                Fogginess
-                            </Label>
-                            <Col sm={6}>
-                                <Input
-                                    id="fogginess"
-                                    name="fogginess"
-                                    type="range"
-                                    plaintext
-                                    onChange={({ target }) => setFogginess(+target.value)}
-                                />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className={'align-items-center text-center justify-content-center'}>
-                            <Label
-                                for="anxiety"
-                                size="md"
-                                sm={3}
-                            >
-                                Anxiety
-                            </Label>
-                            <Col sm={6}>
-                                <Input
-                                    id="anxiety"
-                                    name="anxiety"
-                                    type="range"
-                                    onChange={({ target }) => setAnxiety(+target.value)}
-                                    plaintext
-                                />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className={'align-items-center text-center justify-content-center'}>
-                            <Label
-                                for="headache"
-                                size="md"
-                                sm={3}
-                            >
-                                Headache
-                            </Label>
-                            <Col sm={6}>
-                                <Input
-                                    id="headache"
-                                    name="headache"
-                                    type="range"
-                                    plaintext
-                                    onChange={({ target }) => setHeadache(+target.value)}
-                                />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className={'align-items-center text-center justify-content-center'}>
-                            <Label
-                                for="fatigue"
-                                size="md"
-                                sm={3}
-                            >
-                                Fatigue
-                            </Label>
-                            <Col sm={6}>
-                                <Input
-                                    id="fatigue"
-                                    name="fatigue"
-                                    type="range"
-                                    plaintext
-                                    onChange={({ target }) => setFatigue(+target.value)}
-                                />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row className={'align-items-center text-center justify-content-center'}>
-                            <Label
-                                for="gut"
-                                size="md"
-                                sm={3}
-                            >
-                                Gut
-                            </Label>
-                            <Col sm={6}>
-                                <Input
-                                    id="gut"
-                                    name="gut"
-                                    type="range"
-                                    plaintext
-                                    onChange={({ target }) => setGut(+target.value)}
-                                />
-                            </Col>
-                        </FormGroup>
+                        <Symptoms label={'Fogginess'} id={'fogginess'} value={fogginess} setValue={setFogginess} />
+                        <Symptoms label={'Anxiety'} id={'anxiety'} value={anxiety} setValue={setAnxiety} />
+                        <Symptoms label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
+                        <Symptoms label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
+                        <Symptoms label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
                     </Form>
                 </ModalBody>
                 <ModalFooter>
