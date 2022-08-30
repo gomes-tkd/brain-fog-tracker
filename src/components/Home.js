@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import {registerSymptom} from "../Firebase";
 import Symptoms from "../pages/Symptoms";
+import DateTime from "../pages/DateTime";
 
 const Home = () => {
 
@@ -20,7 +21,7 @@ const Home = () => {
     const [headache, setHeadache] = useState(0);
     const [fatigue, setFatigue] = useState(0);
     const [gut, setGut] = useState(0);
-    const date = new Date();
+    const [date, setDate] = useState(new Date());
 
     const toggle = () => setModal(!modal);
 
@@ -58,6 +59,7 @@ const Home = () => {
                         <Symptoms label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
                         <Symptoms label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
                         <Symptoms label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
+                        <DateTime label={'Date'} id={'date'} value={date} setValue={setDate} />
                     </Form>
                 </ModalBody>
                 <ModalFooter>
