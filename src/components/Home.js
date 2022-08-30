@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import {registerSymptom} from "../Firebase";
 import Symptoms from "../pages/Symptoms";
+import DeleteSymp from "./DeleteSymp";
 
 const Home = () => {
 
@@ -47,9 +48,12 @@ const Home = () => {
                 </Row>
             </Container>
 
+
+
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
                     NEW SYMPTOM
+                    <DeleteSymp />
                 </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
