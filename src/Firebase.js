@@ -6,7 +6,8 @@ import {
     sendPasswordResetEmail,
     signOut
 } from "firebase/auth";
-import { addDoc, getFirestore, collection, doc, deleteDoc } from "firebase/firestore";
+import { addDoc, getDocs, getFirestore, collection, doc, deleteDoc } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo",
     authDomain: "fog-tracker.firebaseapp.com",
@@ -95,6 +96,11 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
        gut,
        date
     });
+}
+
+export async function getSymptoms(setData) {
+    const data = await getDocs(symptomCollectionRef);
+    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 }
 
 export async function removeSymptom(id) {
