@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button,
     Col,
@@ -7,11 +7,11 @@ import {
     ModalBody,
     ModalFooter,
     ModalHeader,
-    Row
 } from "reactstrap";
-import {registerSymptom} from "../Firebase";
-import Symptoms from "../pages/Symptoms";
+import {getSymptoms, registerSymptom} from "../Firebase";
+import AddSymptom from "../pages/AddSymptom";
 import DateTime from "../pages/DateTime";
+import Symptom from "./Symptom";
 
 const Home = () => {
 
@@ -31,22 +31,13 @@ const Home = () => {
 
     return (
         <main>
-            <Container>
-                <Row className={"mt-5"}>
-                    <Col
-                        className={"text-center mt-5"}
-                        md={{
-                            offset: 3,
-                            size: 6
-                        }}
-                        sm="12"
-                    >
-                        <Button color={'primary'} onClick={toggle}>
+            <Container className={'justify-content-end d-flex'}>
+                        <Button color={'primary mt-4 mb-4'} onClick={toggle}>
                             Symptom
                         </Button>
-                    </Col>
-                </Row>
             </Container>
+
+            <Symptom />
 
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
@@ -54,11 +45,11 @@ const Home = () => {
                 </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
-                        <Symptoms label={'Fogginess'} id={'fogginess'} value={fogginess} setValue={setFogginess} />
-                        <Symptoms label={'Anxiety'} id={'anxiety'} value={anxiety} setValue={setAnxiety} />
-                        <Symptoms label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
-                        <Symptoms label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
-                        <Symptoms label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
+                        <AddSymptom label={'Fogginess'} id={'fogginess'} value={fogginess} setValue={setFogginess} />
+                        <AddSymptom label={'Anxiety'} id={'anxiety'} value={anxiety} setValue={setAnxiety} />
+                        <AddSymptom label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
+                        <AddSymptom label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
+                        <AddSymptom label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
                         <DateTime label={'Date'} id={'date'} value={date} setValue={setDate} />
                     </Form>
                 </ModalBody>

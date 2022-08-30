@@ -6,7 +6,7 @@ import {
     Label,
 } from 'reactstrap';
 
-const Symptoms = ({label, id, value, setValue}) => {
+const AddSymptom = ({label, id, value, setValue}) => {
 
     return (
         <FormGroup row className={'align-items-center text-center justify-content-center'}>
@@ -31,4 +31,4 @@ const Symptoms = ({label, id, value, setValue}) => {
     );
 };
 
-export default Symptoms;
+export default AddSymptom;
