@@ -24,6 +24,7 @@ const Symptoms = ({label, id, value, setValue}) => {
                     type="range"
                     plaintext
                     onChange={({ target }) => setValue(+target.value)}
+                    value={value}
                 />
             </Col>
         </FormGroup>
