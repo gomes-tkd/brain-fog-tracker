@@ -19,8 +19,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const currentUser = auth.currentUser;
-const db = getFirestore(app);
-const symptomCollectionRef = collection(db, 'symptoms');
+export const db = getFirestore(app);
+export const symptomCollectionRef = collection(db, 'symptoms');
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -65,6 +65,7 @@ export async function logInUser(email, password) {
     if (!userUID) {
         throw new Error('Something went wrong with the uid');
     }
+
 }
 
 export async function logOut() {
@@ -87,14 +88,17 @@ export async function resetPassword(email) {
     const response = await sendPasswordResetEmail(auth, email);
 }
 
-export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date) {
-    await addDoc(symptomCollectionRef, {
-       fogginess,
-       anxiety,
-       headache,
-       fatigue,
-       gut,
-       date
-    });
+export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date, userId) {
+
+        await addDoc(symptomCollectionRef, {
+            fogginess,
+            anxiety,
+            headache,
+            fatigue,
+            gut,
+            date,
+            userId
+        });
+
 }
 

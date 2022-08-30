@@ -9,10 +9,10 @@ import {
     ModalHeader,
     Row
 } from "reactstrap";
-import {registerSymptom} from "../Firebase";
+import { registerSymptom } from "../Firebase";
 import Symptoms from "../pages/Symptoms";
 
-const Home = () => {
+const Home = ({ userId }) => {
 
     const [modal, setModal] = useState(false);
     const [fogginess, setFogginess] = useState(0);
@@ -61,7 +61,7 @@ const Home = () => {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={() => registerSymptom(fogginess, anxiety, headache, fatigue, gut, date)
+                    <Button color="primary" onClick={() => registerSymptom(fogginess, anxiety, headache, fatigue, gut, date, userId)
                     } >
                         Save
                     </Button>
