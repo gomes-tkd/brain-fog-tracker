@@ -6,7 +6,8 @@ import {
     sendPasswordResetEmail,
     signOut
 } from "firebase/auth";
-import { addDoc, getDocs, getFirestore, collection } from "firebase/firestore";
+import { addDoc, getDocs, getFirestore, collection, doc, deleteDoc } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo",
     authDomain: "fog-tracker.firebaseapp.com",
@@ -57,7 +58,6 @@ export async function logInUser(email, password) {
 
     const userResponse = await response.user;
     if (!userResponse) {
-        // TODO EG: pq essa mensagem? vc sabe se eh isso mesmo?
         throw new Error('There is no user record corresponding to this identifier. The user may have been deleted.');
     }
 
@@ -98,8 +98,12 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
     });
 }
 
-
 export async function getSymptoms(setData) {
     const data = await getDocs(symptomCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+}
+
+export async function removeSymptom(id) {
+    const symp = doc(db, 'symptoms', id);
+    await deleteDoc(symp);
 }

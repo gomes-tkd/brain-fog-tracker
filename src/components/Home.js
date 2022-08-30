@@ -8,10 +8,13 @@ import {
     ModalFooter,
     ModalHeader,
 } from "reactstrap";
-import {getSymptoms, registerSymptom} from "../Firebase";
+import { getSymptoms, registerSymptom } from "../Firebase";
 import AddSymptom from "../pages/AddSymptom";
 import DateTime from "../pages/DateTime";
 import Symptom from "./Symptom";
+import DeleteSymp from "./DeleteSymp";
+import { registerSymptom } from "../Firebase";
+import Symptoms from "../components/Symptoms";
 
 const Home = () => {
 
@@ -42,6 +45,7 @@ const Home = () => {
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
                     NEW SYMPTOM
+                    <DeleteSymp />
                 </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
