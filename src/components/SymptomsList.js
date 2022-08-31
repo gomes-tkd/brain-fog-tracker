@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Col, Container, Row } from "reactstrap";
 import DeleteSymptomButton from "./DeleteSymptomButton";
 
-const SymptomsList = ({ symp }) => (
+const SymptomsList = ({ symptoms, setSymptoms }) => (
   <Container>
     {
-      symp && symp.map(({id, fogginess, anxiety, headache, fatigue, gut}) => (
+      symptoms && symptoms.map(({id, fogginess, anxiety, headache, fatigue, gut}) => (
         <Row
           key={id}
           className={"shadow p-3 mb-3 bg-white rounded pt-3 pb-3 text-center align-items-center justify-content-center"}
@@ -22,7 +22,7 @@ const SymptomsList = ({ symp }) => (
             <Button color={'light'} block>Edit</Button>
           </Col>
           <Col>
-            <DeleteSymptomButton />
+            <DeleteSymptomButton id={id} setSymptoms={setSymptoms} />
           </Col>
         </Row>
       ))

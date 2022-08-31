@@ -44,7 +44,7 @@ const Home = () => {
         </Button>
       </Container>
 
-      <SymptomsList symp={symptoms} />
+      <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>

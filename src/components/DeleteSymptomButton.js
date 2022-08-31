@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { removeSymptom } from "../Firebase";
+import {getSymptoms, removeSymptom} from "../Firebase";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
-const DeleteSymptomButton = ({ id }) => {
+const DeleteSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggle = () => setIsModalOpen(!isModalOpen);
@@ -21,7 +21,8 @@ const DeleteSymptomButton = ({ id }) => {
           <Button
             color={'danger'}
             onClick={async () => {
-              await removeSymptom(id)
+              await removeSymptom(id);
+              await getSymptoms(setSymptoms);
             }}
           >
             DELETE
