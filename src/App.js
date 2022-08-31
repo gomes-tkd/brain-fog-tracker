@@ -7,15 +7,15 @@ import SignUp from './pages/SignUp';
 import LogIn from "./pages/LogIn";
 import { useState } from "react";
 import ResetPassword from "./pages/ResetPassword";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 const PrivateRoute = (props) => {
-    return props.isAuthenticated ? props.children : <LogIn />
+  return props.isAuthenticated ? props.children : <LogIn />
 };
 
 const AuthRoute = (props) => {
-    return props.isAuthenticated ? <Navigate to={'/'} /> : props.children;
+  return props.isAuthenticated ? <Navigate to={'/'} /> : props.children;
 }
 
 function App() {
@@ -30,32 +30,44 @@ function App() {
   });
 
   return (
-    <BrowserRouter>
+      <BrowserRouter>
         <Header isAuthenticated={isAuthenticated} />
         <Routes>
-            <Route path={'/signup'} element={(
-                <AuthRoute isAuthenticated={isAuthenticated}>
-                    <SignUp />
-                </AuthRoute>
-            )} />
-            <Route path={'/login'} element={(
-                <AuthRoute isAuthenticated={isAuthenticated}>
-                    <LogIn />
-                </AuthRoute>
-            )} />
-            <Route path={'/reset-password'} element={(
-                <AuthRoute isAuthenticated={isAuthenticated}>
-                    <ResetPassword />
-                </AuthRoute>
-            )} />
-            <Route path={'/'} element={(
-                <PrivateRoute isAuthenticated={isAuthenticated}>
-                    <Home />
-                </PrivateRoute>
-            )}/>
-            <Route path={'*'} element={<NotFound />}/>
+          <Route
+            path={'/signup'}
+            element={(
+              <AuthRoute isAuthenticated={isAuthenticated}>
+                <SignUp />
+              </AuthRoute>
+            )}
+          />
+          <Route
+            path={'/login'}
+            element={(
+              <AuthRoute isAuthenticated={isAuthenticated}>
+                <LogIn />
+              </AuthRoute>
+            )}
+          />
+          <Route
+            path={'/reset-password'}
+            element={(
+              <AuthRoute isAuthenticated={isAuthenticated}>
+                <ResetPassword />
+              </AuthRoute>
+            )}
+          />
+          <Route
+            path={'/'}
+            element={(
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <Home />
+              </PrivateRoute>
+            )}
+          />
+          <Route path={'*'} element={<NotFound />} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 }
 

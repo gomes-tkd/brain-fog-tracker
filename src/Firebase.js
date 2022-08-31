@@ -6,7 +6,14 @@ import {
     sendPasswordResetEmail,
     signOut
 } from "firebase/auth";
-import { addDoc, getDocs, getFirestore, collection, doc, deleteDoc } from "firebase/firestore";
+import {
+    addDoc,
+    getDocs,
+    getFirestore,
+    collection,
+    doc,
+    deleteDoc
+} from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAgydIK35ul8MNtFFcaDkMvfTJnRdPBsFo",
@@ -19,16 +26,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const currentUser = auth.currentUser;
 const db = getFirestore(app);
-const symptomCollectionRef = collection(db, 'symptoms');
+const symptomsCollectionRef = collection(db, 'symptoms');
 
 export async function createUser(email, password) {
     if (!email || !password) {
         throw new Error("Email or password is invalid");
     }
 
-    if (currentUser) {
+    if (auth.currentUser) {
         throw new Error("User already exists.");
     }
 
@@ -50,7 +56,7 @@ export async function logInUser(email, password) {
         throw new Error('Email or password is invalid');
     }
 
-    if (currentUser) {
+    if (auth.currentUser) {
         throw new Error('Already logged in');
     }
 
@@ -58,7 +64,7 @@ export async function logInUser(email, password) {
 
     const userResponse = await response.user;
     if (!userResponse) {
-      throw new Error('There is no user record corresponding to this identifier. The user may have been deleted.');
+        throw new Error('Something went wrong');
     }
 
     const userUID = userResponse.uid;
@@ -68,15 +74,7 @@ export async function logInUser(email, password) {
 }
 
 export async function logOut() {
-    await signOut(auth)
-        .then(() => {})
-        .catch(error => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            console.log("error code sing out: ", errorCode);
-            console.log("error message sign out: ", errorMessage);
-        });
+    await signOut(auth);
 }
 
 export async function resetPassword(email) {
@@ -84,11 +82,11 @@ export async function resetPassword(email) {
         throw new Error('Email is required.');
     }
 
-    const response = await sendPasswordResetEmail(auth, email);
+    await sendPasswordResetEmail(auth, email);
 }
 
 export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date) {
-    await addDoc(symptomCollectionRef, {
+    await addDoc(symptomsCollectionRef, {
         fogginess,
         anxiety,
         headache,
@@ -100,8 +98,9 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
 }
 
 export async function getSymptoms(setData) {
-    const data = await getDocs(symptomCollectionRef);
+    const data = await getDocs(symptomsCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+
 }
 
 export async function removeSymptom(id) {
