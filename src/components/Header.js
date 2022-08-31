@@ -17,23 +17,23 @@ const Header = ({ isAuthenticated }) => {
 
     return (
         <Navbar
-            color={'light'}
+            color={'primary'}
             expand={'md'}
             container
             light
         >
-            <NavbarBrand>Fog Tracker</NavbarBrand>
+            <NavbarBrand className={'text-white'}>Fog Tracker</NavbarBrand>
             <NavbarToggler onClick={toggle}/>
             <Collapse isOpen={isOpen} navbar>
                 <Nav className={'me-auto'} navbar>
                 </Nav>
                 <Nav navbar>
                     <NavItem>
-                        <NavLink href={'#'}>Link</NavLink>
+                        <NavLink href={'#'} className={'text-white'}>Link</NavLink>
                     </NavItem>
                     { isAuthenticated ? (
                         <UncontrolledDropdown inNavbar>
-                            <DropdownToggle nav caret>
+                            <DropdownToggle nav caret className={'text-white'}>
                                 Account
                             </DropdownToggle>
                             <DropdownMenu end>
