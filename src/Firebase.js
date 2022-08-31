@@ -16,11 +16,11 @@ const firebaseConfig = {
     appId: "1:997079302557:web:39445239f281a14aeb2f74"
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const currentUser = auth.currentUser;
-export const db = getFirestore(app);
-export const symptomCollectionRef = collection(db, 'symptoms');
+const currentUser = auth.currentUser;
+const db = getFirestore(app);
+const symptomCollectionRef = collection(db, 'symptoms');
 
 export async function createUser(email, password) {
     if (!email || !password) {
