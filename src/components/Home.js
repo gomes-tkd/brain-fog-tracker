@@ -12,7 +12,7 @@ import {
 import { registerSymptom } from "../Firebase";
 import Symptoms from "../pages/Symptoms";
 
-const Home = ({ userId }) => {
+const Home = () => {
 
     const [modal, setModal] = useState(false);
     const [fogginess, setFogginess] = useState(0);
@@ -61,7 +61,7 @@ const Home = ({ userId }) => {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={() => registerSymptom(fogginess, anxiety, headache, fatigue, gut, date, userId)
+                    <Button color="primary" onClick={() => registerSymptom(fogginess, anxiety, headache, fatigue, gut, date)
                     } >
                         Save
                     </Button>

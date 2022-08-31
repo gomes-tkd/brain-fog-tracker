@@ -57,7 +57,7 @@ export async function logInUser(email, password) {
 
     const userResponse = await response.user;
     if (!userResponse) {
-        // TODO EG: pq essa mensagem? vc sabe se eh isso mesmo?
+
         throw new Error('There is no user record corresponding to this identifier. The user may have been deleted.');
     }
 
@@ -65,7 +65,6 @@ export async function logInUser(email, password) {
     if (!userUID) {
         throw new Error('Something went wrong with the uid');
     }
-
 }
 
 export async function logOut() {
@@ -77,7 +76,7 @@ export async function logOut() {
 
             console.log("error code sing out: ", errorCode);
             console.log("error message sign out: ", errorMessage);
-        })
+        });
 }
 
 export async function resetPassword(email) {
@@ -88,17 +87,15 @@ export async function resetPassword(email) {
     const response = await sendPasswordResetEmail(auth, email);
 }
 
-export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date, userId) {
-
-        await addDoc(symptomCollectionRef, {
-            fogginess,
-            anxiety,
-            headache,
-            fatigue,
-            gut,
-            date,
-            userId
-        });
-
+export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date) {
+    await addDoc(symptomCollectionRef, {
+        fogginess,
+        anxiety,
+        headache,
+        fatigue,
+        gut,
+        date,
+        userId: auth.currentUser.uid,
+    });
 }
 

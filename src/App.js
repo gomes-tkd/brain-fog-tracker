@@ -20,15 +20,12 @@ const AuthRoute = (props) => {
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userId, setUserId] = useState('');
 
   onAuthStateChanged(auth, user => {
     if (user) {
       setIsAuthenticated(true);
-      setUserId(user.uid);
     } else {
       setIsAuthenticated(false);
-      setUserId('');
     }
   });
 
@@ -53,7 +50,7 @@ function App() {
             )} />
             <Route path={'/'} element={(
                 <PrivateRoute isAuthenticated={isAuthenticated}>
-                    <Home userId={userId} />
+                    <Home />
                 </PrivateRoute>
             )}/>
             <Route path={'*'} element={<NotFound />}/>
