@@ -17,9 +17,9 @@ const firebaseConfig = {
     appId: "1:997079302557:web:39445239f281a14aeb2f74"
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const currentUser = auth.currentUser;
+const currentUser = auth.currentUser;
 const db = getFirestore(app);
 const symptomCollectionRef = collection(db, 'symptoms');
 
@@ -58,7 +58,7 @@ export async function logInUser(email, password) {
 
     const userResponse = await response.user;
     if (!userResponse) {
-        throw new Error('There is no user record corresponding to this identifier. The user may have been deleted.');
+      throw new Error('There is no user record corresponding to this identifier. The user may have been deleted.');
     }
 
     const userUID = userResponse.uid;
@@ -76,7 +76,7 @@ export async function logOut() {
 
             console.log("error code sing out: ", errorCode);
             console.log("error message sign out: ", errorMessage);
-        })
+        });
 }
 
 export async function resetPassword(email) {
@@ -89,12 +89,13 @@ export async function resetPassword(email) {
 
 export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut, date) {
     await addDoc(symptomCollectionRef, {
-       fogginess,
-       anxiety,
-       headache,
-       fatigue,
-       gut,
-       date
+        fogginess,
+        anxiety,
+        headache,
+        fatigue,
+        gut,
+        date,
+        userId: auth.currentUser.uid,
     });
 }
 

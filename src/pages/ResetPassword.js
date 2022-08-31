@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import {Button, Col, Container, FormGroup, Input, Row} from "reactstrap";
-import {ReactComponent as SignUpImg} from "../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg";
-import {NavLink} from "react-router-dom";
-import {resetPassword} from "../Firebase";
+import { Button, Col, Container, FormGroup, Input, Row } from "reactstrap";
+import { ReactComponent as SignUpImg } from "../assets/imgs/lock_FILL0_wght200_GRAD0_opsz48.svg";
+import { NavLink } from "react-router-dom";
+import { resetPassword } from "../Firebase";
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
