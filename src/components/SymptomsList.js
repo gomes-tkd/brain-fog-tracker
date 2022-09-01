@@ -5,7 +5,7 @@ import EditSymptomButton from "./EditSymptomButton";
 
 const SymptomsList = ({ symptoms, setSymptoms }) => {
   function sortByDate(s1, s2) {
-    return s2.date.getTime() - s1.date.getTime();
+    return s2.date.toDate().getTime() - s1.date.toDate().getTime();
   }
 
   return (
@@ -30,7 +30,7 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
               <EditSymptomButton id={id} setSymptoms={setSymptoms} />
             </Col>
             <Col>
-              <DeleteSymptomButton />
+              <DeleteSymptomButton id={id} setSymptoms={setSymptoms} />
             </Col>
           </Row>
         ))

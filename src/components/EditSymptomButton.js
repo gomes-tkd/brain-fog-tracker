@@ -30,7 +30,7 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>
-          NEW SYMPTOM
+          EDIT SYMPTOM
         </ModalHeader>
         <Form onSubmit={handleSubmit}>
           <ModalBody>
