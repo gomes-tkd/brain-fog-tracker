@@ -4,7 +4,7 @@ import RangeInput from "./RangeInput";
 import DateTimeInput from "./DateTimeInput";
 import { editSymptom, getSymptoms } from "../Firebase";
 
-const SymptomEditButton = ({ id, setSymptoms }) => {
+const EditSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fogginess, setFogginess] = useState(0);
   const [anxiety,setAnxiety] = useState(0);
@@ -52,4 +52,4 @@ const SymptomEditButton = ({ id, setSymptoms }) => {
   );
 };
 
-export default SymptomEditButton;
+export default EditSymptomButton;
