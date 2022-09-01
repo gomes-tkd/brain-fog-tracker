@@ -1,18 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {
-  Button,
-  Container, Form,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-} from "reactstrap";
-import { getSymptoms, registerSymptom } from "../Firebase";
-import RangeInput from "../components/RangeInput";
-import DateTimeInput from "../components/DateTimeInput";
-import SymptomsList from "../components/SymptomsList";
+import React, { useState } from 'react';
+import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import RangeInput from "./RangeInput";
+import DateTimeInput from "./DateTimeInput";
+import { editSymptom, getSymptoms } from "../Firebase";
 
-const Home = () => {
+const EditSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fogginess, setFogginess] = useState(0);
   const [anxiety,setAnxiety] = useState(0);
@@ -21,30 +13,20 @@ const Home = () => {
   const [gut, setGut] = useState(0);
   const [date, setDate] = useState(new Date());
 
-  const [symptoms, setSymptoms] = useState([]);
-
   const toggleModal = () => setIsModalOpen(!isModalOpen);
-
-  useEffect(() => {
-    getSymptoms(setSymptoms);
-  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await registerSymptom(fogginess, anxiety, headache, fatigue, gut, date);
+    await editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date);
     await getSymptoms(setSymptoms);
     toggleModal();
   }
 
   return (
-    <main>
-      <Container className={'justify-content-end d-flex'}>
-        <Button color={'primary mt-4 mb-4'} onClick={toggleModal}>
-          Symptom
-        </Button>
-      </Container>
-
-      <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />
+    <>
+      <Button color={'light'} block onClick={toggleModal}>
+        Edit
+      </Button>
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>
@@ -66,8 +48,8 @@ const Home = () => {
           </ModalFooter>
         </Form>
       </Modal>
-    </main>
+    </>
   );
 };
 
-export default Home;
+export default EditSymptomButton;

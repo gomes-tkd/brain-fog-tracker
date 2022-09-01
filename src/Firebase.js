@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import {
     addDoc,
+    setDoc,
     getDocs,
     getFirestore,
     collection,
@@ -106,4 +107,16 @@ export async function getSymptoms(setData) {
 export async function removeSymptom(id) {
     const symp = doc(db, 'symptoms', id);
     await deleteDoc(symp);
+}
+
+export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date) {
+    const symptomRef = doc(db, 'symptoms', id);
+    await setDoc(symptomRef, {
+        fogginess,
+        anxiety,
+        headache,
+        fatigue,
+        gut,
+        date,
+    });
 }
