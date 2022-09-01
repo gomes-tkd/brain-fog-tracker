@@ -4,14 +4,15 @@ import DeleteSymptomButton from "./DeleteSymptomButton";
 import EditSymptomButton from "./EditSymptomButton";
 
 const SymptomsList = ({ symptoms, setSymptoms }) => {
-  const currentDate = new Date();
+  function sortByDate(s1, s2) {
+    return s2.date.getTime() - s1.date.getTime();
+  }
 
   return (
     <Container>
       {
-
         symptoms && symptoms
-          .sort()
+          .sort(sortByDate)
           .map(({ id, fogginess, anxiety, headache, fatigue, gut }) => (
           <Row
             key={id}
