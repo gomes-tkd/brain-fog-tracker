@@ -23,7 +23,10 @@ const Home = () => {
 
   const [symptoms, setSymptoms] = useState([]);
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+    setDate(new Date());
+  };
 
   useEffect(() => {
     getSymptoms(setSymptoms);
