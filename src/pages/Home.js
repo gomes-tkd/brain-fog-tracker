@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Button,
+  Button, Col,
   Container, Form,
   Modal,
   ModalBody,
@@ -11,6 +11,7 @@ import { getSymptoms, registerSymptom } from "../Firebase";
 import RangeInput from "../components/RangeInput";
 import DateTimeInput from "../components/DateTimeInput";
 import SymptomsList from "../components/SymptomsList";
+import ModalFoodButton from "../components/ModalFoodButton";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +23,7 @@ const Home = () => {
   const [date, setDate] = useState(new Date());
 
   const [symptoms, setSymptoms] = useState([]);
+  const [food, setFood] = useState([]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -42,7 +44,8 @@ const Home = () => {
   return (
     <main>
       <Container className={'justify-content-end d-flex'}>
-        <Button color={'primary mt-4 mb-4'} onClick={toggleModal}>
+        <ModalFoodButton date={date} setDate={setDate} />
+        <Button className={'m-3'} color={'primary'} onClick={toggleModal}>
           Symptom
         </Button>
       </Container>
@@ -69,6 +72,8 @@ const Home = () => {
           </ModalFooter>
         </Form>
       </Modal>
+
+
     </main>
   );
 };
