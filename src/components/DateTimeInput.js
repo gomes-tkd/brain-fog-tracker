@@ -1,24 +1,25 @@
 import React from 'react';
 import DateTimePicker from "react-datetime-picker";
-import { Col, FormGroup, Label } from "reactstrap";
+import { FormGroup, Label } from "reactstrap";
 
 const DateTimeInput = ({ value, setValue, label, id }) => {
   return (
-    <FormGroup row className={'align-items-center text-center justify-content-center'}>
+    <FormGroup style={{marginBottom: "0 !important"}}>
       <Label
         for={id}
-        size="md"
-        sm={3}
+        className={"mr-2"}
+        // size="md"
       >
         { label }
       </Label>
-      <Col sm={6}>
+      {/*<Col sm={6}>*/}
         <DateTimePicker
+          className={"ms-3"}
           id={id}
           onChange={setValue}
           value={value}
         />
-      </Col>
+      {/*</Col>*/}
     </FormGroup>
   );
 };

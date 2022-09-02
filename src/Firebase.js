@@ -13,7 +13,7 @@ import {
     getFirestore,
     collection,
     doc,
-    deleteDoc
+    deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -29,6 +29,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 const symptomsCollectionRef = collection(db, 'symptoms');
+const foodsCollectionRef = collection(db, 'foods');
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -118,5 +119,12 @@ export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut
         fatigue,
         gut,
         date,
+    });
+}
+
+export async function registerFood(foods) {
+    await addDoc(foodsCollectionRef, {
+        foods,
+        userId: auth.currentUser.uid,
     });
 }
