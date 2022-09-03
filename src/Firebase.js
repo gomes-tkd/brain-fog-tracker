@@ -14,6 +14,7 @@ import {
     collection,
     doc,
     deleteDoc,
+    onSnapshot
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -28,8 +29,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const symptomsCollectionRef = collection(db, 'symptoms');
-const foodsCollectionRef = collection(db, 'foods');
+const symptomsCollectionRef = collection(db, "symptomsList");
+const foodsCollectionRef = collection(db, "foodsList");
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -55,23 +56,23 @@ export async function createUser(email, password) {
 
 export async function logInUser(email, password) {
     if (!email || !password) {
-        throw new Error('Email or password is invalid');
+        throw new Error("Email or password is invalid");
     }
 
     if (auth.currentUser) {
-        throw new Error('Already logged in');
+        throw new Error("Already logged in");
     }
 
     const response = await signInWithEmailAndPassword(auth, email, password)
 
     const userResponse = await response.user;
     if (!userResponse) {
-        throw new Error('Something went wrong');
+        throw new Error("Something went wrong");
     }
 
     const userUID = userResponse.uid;
     if (!userUID) {
-        throw new Error('Something went wrong with the uid');
+        throw new Error("Something went wrong with the uid");
     }
 }
 
@@ -81,7 +82,7 @@ export async function logOut() {
 
 export async function resetPassword(email) {
     if (!email) {
-        throw new Error('Email is required.');
+        throw new Error("Email is required.");
     }
 
     await sendPasswordResetEmail(auth, email);
@@ -102,16 +103,15 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
 export async function getSymptoms(setData) {
     const data = await getDocs(symptomsCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-
 }
 
 export async function removeSymptom(id) {
-    const symp = doc(db, 'symptoms', id);
+    const symp = doc(db, "symptoms", id);
     await deleteDoc(symp);
 }
 
 export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date) {
-    const symptomRef = doc(db, 'symptoms', id);
+    const symptomRef = doc(db, "symptoms", id);
     await setDoc(symptomRef, {
         fogginess,
         anxiety,
@@ -127,4 +127,9 @@ export async function registerFood(foods) {
         foods,
         userId: auth.currentUser.uid,
     });
+}
+
+export async function getFoods(setData) {
+    const data = await getDocs(foodsCollectionRef);
+    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 }

@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Button, Col,
-  Container, Form,
+  Button,
+  Container,
+  Form,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
 } from "reactstrap";
-import { getSymptoms, registerSymptom } from "../Firebase";
+import {getFoods, getSymptoms, registerSymptom} from "../Firebase";
 import RangeInput from "../components/RangeInput";
 import DateTimeInput from "../components/DateTimeInput";
 import SymptomsList from "../components/SymptomsList";
 import ModalFoodButton from "../components/ModalFoodButton";
+import FoodsList from "../components/FoodsList";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +25,7 @@ const Home = () => {
   const [date, setDate] = useState(new Date());
 
   const [symptoms, setSymptoms] = useState([]);
-  const [food, setFood] = useState([]);
+  const [foodsList, setFoodsList] = useState([]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -32,6 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     getSymptoms(setSymptoms);
+    getFoods(setFoodsList);
   }, []);
 
   async function handleSubmit(e) {
@@ -51,6 +54,7 @@ const Home = () => {
       </Container>
 
       <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />
+      <FoodsList foodsList={foodsList} setFoodsList={setFoodsList} />
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>
@@ -72,8 +76,6 @@ const Home = () => {
           </ModalFooter>
         </Form>
       </Modal>
-
-
     </main>
   );
 };
