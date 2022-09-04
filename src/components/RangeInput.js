@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
   Col,
   FormGroup,
   Input,
   Label,
-} from 'reactstrap';
+} from "reactstrap";
 
 const RangeInput = ({ label, id, value, setValue }) => {
   return (
-    <FormGroup row className={'align-items-center text-center justify-content-center'}>
+    <FormGroup row className={"align-items-center text-center justify-content-center"}>
       <Label
         for={id}
         size="md"

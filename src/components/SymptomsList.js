@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import DeleteSymptomButton from "./DeleteSymptomButton";
 import EditSymptomButton from "./EditSymptomButton";

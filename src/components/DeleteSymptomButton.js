@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { getSymptoms, removeSymptom } from "../Firebase";
+import { useState } from "react";
+import {getSymptoms, removeSymptom} from "../Firebase";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 const DeleteSymptomButton = ({ id, setSymptoms }) => {
@@ -19,7 +19,7 @@ const DeleteSymptomButton = ({ id, setSymptoms }) => {
         </ModalBody>
         <ModalFooter>
           <Button
-            color={'danger'}
+            color={"danger"}
             onClick={async () => {
               await removeSymptom(id);
               await getSymptoms(setSymptoms);
