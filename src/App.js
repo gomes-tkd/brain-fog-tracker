@@ -1,9 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './Firebase';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import SignUp from './pages/SignUp';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./Firebase";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import { useState } from "react";
 import ResetPassword from "./pages/ResetPassword";
@@ -15,7 +15,7 @@ const PrivateRoute = (props) => {
 };
 
 const AuthRoute = (props) => {
-  return props.isAuthenticated ? <Navigate to={'/'} /> : props.children;
+  return props.isAuthenticated ? <Navigate to={"/"} /> : props.children;
 }
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
         <Header isAuthenticated={isAuthenticated} />
         <Routes>
           <Route
-            path={'/signup'}
+            path={"/signup"}
             element={(
               <AuthRoute isAuthenticated={isAuthenticated}>
                 <SignUp />
@@ -42,7 +42,7 @@ function App() {
             )}
           />
           <Route
-            path={'/login'}
+            path={"/login"}
             element={(
               <AuthRoute isAuthenticated={isAuthenticated}>
                 <LogIn />
@@ -50,7 +50,7 @@ function App() {
             )}
           />
           <Route
-            path={'/reset-password'}
+            path={"/reset-password"}
             element={(
               <AuthRoute isAuthenticated={isAuthenticated}>
                 <ResetPassword />
@@ -58,14 +58,14 @@ function App() {
             )}
           />
           <Route
-            path={'/'}
+            path={"/"}
             element={(
               <PrivateRoute isAuthenticated={isAuthenticated}>
                 <Home />
               </PrivateRoute>
             )}
           />
-          <Route path={'*'} element={<NotFound />} />
+          <Route path={"*"} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { logOut } from "../Firebase";
 import {
     Collapse,
@@ -21,22 +21,22 @@ const Header = ({ isAuthenticated }) => {
 
     return (
       <Navbar
-        color={'primary'}
-        expand={'md'}
+        color={"primary"}
+        expand={"md"}
         container
         light
       >
-          <NavbarBrand className={'text-white'}>Fog Tracker</NavbarBrand>
+          <NavbarBrand className={"text-white"}>Fog Tracker</NavbarBrand>
           <NavbarToggler onClick={toggle}/>
           <Collapse isOpen={isOpen} navbar>
-              <Nav className={'me-auto'} navbar />
+              <Nav className={"me-auto"} navbar />
               <Nav navbar>
                   <NavItem>
-                      <NavLink href={'#'} className={'text-white'}>Link</NavLink>
+                      <NavLink href={"#"} className={"text-white"}>Link</NavLink>
                   </NavItem>
                   { isAuthenticated ? (
                     <UncontrolledDropdown inNavbar>
-                        <DropdownToggle nav caret className={'text-white'}>
+                        <DropdownToggle nav caret className={"text-white"}>
                             Account
                         </DropdownToggle>
                         <DropdownMenu end>
@@ -47,7 +47,7 @@ const Header = ({ isAuthenticated }) => {
                     </UncontrolledDropdown>
                   ) : (
                     <NavItem>
-                        <NavLink href={'/signup'} className={'text-white'}>Sign Up</NavLink>
+                        <NavLink href={"/signup"} className={"text-white"}>Sign Up</NavLink>
                     </NavItem>
                   )}
               </Nav>

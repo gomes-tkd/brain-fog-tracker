@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import RangeInput from "./RangeInput";
 import DateTimeInput from "./DateTimeInput";
@@ -24,7 +24,7 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
 
   return (
     <>
-      <Button color={'light'} block onClick={toggleModal}>
+      <Button color={"light"} block onClick={toggleModal}>
         Edit
       </Button>
 
@@ -34,12 +34,12 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
         </ModalHeader>
         <Form onSubmit={handleSubmit}>
           <ModalBody>
-            <RangeInput label={'Fogginess'} id={'fogginess'} value={fogginess} setValue={setFogginess} />
-            <RangeInput label={'Anxiety'} id={'anxiety'} value={anxiety} setValue={setAnxiety} />
-            <RangeInput label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
-            <RangeInput label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
-            <RangeInput label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
-            <DateTimeInput label={'Date'} id={'date'} value={date} setValue={setDate} />
+            <RangeInput label={"Fogginess"} id={"fogginess"} value={fogginess} setValue={setFogginess} />
+            <RangeInput label={"Anxiety"} id={"anxiety"} value={anxiety} setValue={setAnxiety} />
+            <RangeInput label={"Headache"} id={"headache"} value={headache} setValue={setHeadache} />
+            <RangeInput label={"Fatigue"} id={"fatigue"} value={fatigue} setValue={setFatigue} />
+            <RangeInput label={"Gut"} id={"gut"} value={gut} setValue={setGut} />
+            <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
           </ModalBody>
           <ModalFooter>
             <Button color="primary">

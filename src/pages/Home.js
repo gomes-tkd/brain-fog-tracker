@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import {
   Button, Col,
   Container, Form,
@@ -43,9 +43,9 @@ const Home = () => {
 
   return (
     <main>
-      <Container className={'justify-content-end d-flex'}>
+      <Container className={"justify-content-end d-flex"}>
         <ModalFoodButton date={date} setDate={setDate} />
-        <Button className={'m-3'} color={'primary'} onClick={toggleModal}>
+        <Button className={"m-3"} color={"primary"} onClick={toggleModal}>
           Symptom
         </Button>
       </Container>
@@ -58,12 +58,12 @@ const Home = () => {
         </ModalHeader>
         <Form onSubmit={handleSubmit}>
           <ModalBody>
-            <RangeInput label={'Fogginess'} id={'fogginess'} value={fogginess} setValue={setFogginess} />
-            <RangeInput label={'Anxiety'} id={'anxiety'} value={anxiety} setValue={setAnxiety} />
-            <RangeInput label={'Headache'} id={'headache'} value={headache} setValue={setHeadache} />
-            <RangeInput label={'Fatigue'} id={'fatigue'} value={fatigue} setValue={setFatigue} />
-            <RangeInput label={'Gut'} id={'gut'} value={gut} setValue={setGut} />
-            <DateTimeInput label={'Date'} id={'date'} value={date} setValue={setDate} />
+            <RangeInput label={"Fogginess"} id={"fogginess"} value={fogginess} setValue={setFogginess} />
+            <RangeInput label={"Anxiety"} id={"anxiety"} value={anxiety} setValue={setAnxiety} />
+            <RangeInput label={"Headache"} id={"headache"} value={headache} setValue={setHeadache} />
+            <RangeInput label={"Fatigue"} id={"fatigue"} value={fatigue} setValue={setFatigue} />
+            <RangeInput label={"Gut"} id={"gut"} value={gut} setValue={setGut} />
+            <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
           </ModalBody>
           <ModalFooter>
             <Button color="primary">
