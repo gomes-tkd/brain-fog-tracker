@@ -33,12 +33,10 @@ const ModalFoodButton = ({ date, setDate }) => {
   }
 
   async function handleSubmit(e) {
-    console.log(foods);
     e.preventDefault();
     await registerFood(foods);
     toggleModal();
   }
-
 
   return (
     <div>
