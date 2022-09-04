@@ -10,8 +10,8 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
 
   return (
     <Container>
-      {
-        symptoms && symptoms
+      <h2>Symptoms</h2>
+      {symptoms && symptoms
           .sort(sortByDate)
           .map(({ id, fogginess, anxiety, headache, fatigue, gut }) => (
           <Row
@@ -33,8 +33,7 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
               <DeleteSymptomButton id={id} setSymptoms={setSymptoms} />
             </Col>
           </Row>
-        ))
-      }
+        ))}
     </Container>
   );
 };

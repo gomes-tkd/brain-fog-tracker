@@ -14,6 +14,7 @@ import {
     collection,
     doc,
     deleteDoc,
+    onSnapshot
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -28,8 +29,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const symptomsCollectionRef = collection(db, "symptoms");
-const foodsCollectionRef = collection(db, "foods");
+const symptomsCollectionRef = collection(db, "symptomsList");
+const foodsCollectionRef = collection(db, "foodsList");
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -102,7 +103,6 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
 export async function getSymptoms(setData) {
     const data = await getDocs(symptomsCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-
 }
 
 export async function removeSymptom(id) {
@@ -127,4 +127,9 @@ export async function registerFood(foods) {
         foods,
         userId: auth.currentUser.uid,
     });
+}
+
+export async function getFoods(setData) {
+    const data = await getDocs(foodsCollectionRef);
+    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 }
