@@ -14,7 +14,7 @@ import {
     collection,
     doc,
     deleteDoc,
-    onSnapshot
+    updateDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -132,4 +132,11 @@ export async function registerFood(foods) {
 export async function getFoods(setData) {
     const data = await getDocs(foodsCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+}
+
+export async function editFood(id, foods) {
+    const foodRed = doc(db, "foodsList", id);
+    await setDoc(foodRed, {
+        foods
+    });
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Row } from "reactstrap";
+import EditFoodButton from "./EditFoodButton";
 
 const FoodsList = ({ foodsList, setFoodsList }) => {
   function sortByDate(f1, f2) {
@@ -9,32 +10,27 @@ const FoodsList = ({ foodsList, setFoodsList }) => {
   return (
     <Container>
       <h2>Foods</h2>
-      {foodsList && foodsList.map(({foods, id}) => (
-        <Row
-          key={id}
+      {foodsList && foodsList.map((foods) => {
+        console.log(foods.foods);
+        return (<Row
+          key={foods.id}
           className={"shadow p-3 mb-3 bg-white rounded pt-3 pb-3 text-center align-items-center justify-content-center"}
         >
-          {foods.map(food => (
-            <>
-              <Col>
-                {food}
-              </Col>
-            </>
-          ))}
+          {foods.foods.map((food) => <Col>{food}</Col>)}
           <Col></Col>
           <Col></Col>
           <Col></Col>
           <Col></Col>
           <div className={"col d-flex"}>
             <Col>
-              <Button>Edit</Button>
+              <EditFoodButton setFoodsList={setFoodsList} id={foods.id} />
             </Col>
             <Col className={"ms-3"}>
               <Button>Delete</Button>
             </Col>
           </div>
-        </Row>
-      ))}
+        </Row>)
+      })}
     </Container>
   );
 };

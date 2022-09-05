@@ -54,7 +54,7 @@ const Home = () => {
       </Container>
 
       <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />
-      <FoodsList foodsList={foodsList} setFoodsList={setFoodsList} />
+      <FoodsList foodsList={foodsList} setFoodsList={setFoodsList} date={date} setDate={setDate} />
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>

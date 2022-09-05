@@ -1,20 +1,13 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Row }  from "reactstrap";
+import React, { useState } from 'react';
+import {Button, Col, Container, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
-import { registerFood } from "../Firebase";
+import { editFood, getFoods } from "../Firebase";
 
-const ModalFoodButton = ({ date, setDate }) => {
+const EditFoodButton = ({ setFoodsList, id }) => {
   const [foods, setFoods] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const foodItems = [
     "Bread",
@@ -29,8 +22,6 @@ const ModalFoodButton = ({ date, setDate }) => {
     "Fish"
   ];
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
-
   function onCheckBoxBtnClick(selected) {
     const index = foods.indexOf(selected);
     if (index < 0) {
@@ -43,23 +34,26 @@ const ModalFoodButton = ({ date, setDate }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await registerFood(foods);
+    await editFood(id, foods);
+    await getFoods(setFoodsList);
     toggleModal();
   }
 
   return (
-    <div>
-      <Button color={"primary"} className={"m-3"} onClick={toggleModal}>
-        Food
+    <>
+      <Button color={"light"} block onClick={toggleModal}>
+        Edit
       </Button>
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>NEW FOODS</ModalHeader>
+        <ModalHeader toggle={toggleModal}>
+          EDIT FOOD
+        </ModalHeader>
         <Form onSubmit={handleSubmit}>
-          <ModalBody className={"text-center"}>
+          <ModalBody>
             <Container>
               <Row>
-                { foodItems.map(food => (
+                {foodItems.map(food => (
                   <Col md={4} sm={6} key={food} className={"pb-3"}>
                     <Button
                       color="primary"
@@ -67,12 +61,12 @@ const ModalFoodButton = ({ date, setDate }) => {
                       block
                       onClick={() => onCheckBoxBtnClick(food)}
                       active={foods.includes(food)}
+                      value={foods}
                     >
-                      { food }
+                      {food}
                     </Button>
                   </Col>
-                ))
-                }
+                ))}
               </Row>
             </Container>
           </ModalBody>
@@ -86,8 +80,8 @@ const ModalFoodButton = ({ date, setDate }) => {
           </ModalFooter>
         </Form>
       </Modal>
-    </div>
+    </>
   );
-}
+};
 
-export default ModalFoodButton;
+export default EditFoodButton;
