@@ -1,5 +1,6 @@
 import React from 'react';
 import {Badge, Button, Col, Container, Row} from "reactstrap";
+import DeleteBeveragesButton from "./DeleteBeveragesButton";
 
 const BeveragesList = ({ beverages, setBeverages, date, setDate }) => {
   function sortByDate(b1, b2) {
@@ -32,7 +33,7 @@ const BeveragesList = ({ beverages, setBeverages, date, setDate }) => {
           <Col lg={4}>
             <div className={"d-flex justify-content-end"}>
               <Button>EDIT</Button>
-              <Button>DELETE</Button>
+              <DeleteBeveragesButton id={id} setBeverages={setBeverages} />
             </div>
           </Col>
         </Row>
