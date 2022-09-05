@@ -14,6 +14,7 @@ import DateTimeInput from "../components/DateTimeInput";
 import SymptomsList from "../components/SymptomsList";
 import ModalFoodButton from "../components/ModalFoodButton";
 import FoodsList from "../components/FoodsList";
+import ModalBeveragesButton from "../components/ModalBeveragesButton";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,6 +51,7 @@ const Home = () => {
         <Row>
           <Col>
             <div className={"d-flex flex-row mt-4 justify-content-end"}>
+              <ModalBeveragesButton />
               <ModalFoodButton date={date} setDate={setDate} setFoodsList={setFoodsList} />
               <Button color={"primary"} onClick={toggleModal}>
                 Symptom

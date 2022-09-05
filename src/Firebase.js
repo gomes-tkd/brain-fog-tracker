@@ -30,6 +30,7 @@ export const auth = getAuth(app);
 const db = getFirestore(app);
 const symptomsCollectionRef = collection(db, "symptomsList");
 const foodsCollectionRef = collection(db, "foodsList");
+const beveragesCollectionRef = collection(db, "beveragesList");
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -144,5 +145,13 @@ export async function editFood(id, foods, date) {
     await setDoc(foodRed, {
         foods,
         date
+    });
+}
+
+export async function registerBeverages(beverages, date) {
+    await addDoc(beveragesCollectionRef, {
+        beverages,
+        date,
+        userId: auth.currentUser.uid,
     });
 }
