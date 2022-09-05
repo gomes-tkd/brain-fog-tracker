@@ -146,3 +146,8 @@ export async function editFood(id, foods, date) {
         date
     });
 }
+
+export async function editBeverages(beverages, date, id) {
+    const beveragesRef = doc(db, "beveragesList", id);
+    await setDoc(beveragesRef, { beverages, date });
+}
