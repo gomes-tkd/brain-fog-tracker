@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
-  Button,
+  Button, Col,
   Container,
   Form,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
+  ModalHeader, Row,
 } from "reactstrap";
-import {getFoods, getSymptoms, registerSymptom} from "../Firebase";
+import { getFoods, getSymptoms, registerSymptom } from "../Firebase";
 import RangeInput from "../components/RangeInput";
 import DateTimeInput from "../components/DateTimeInput";
 import SymptomsList from "../components/SymptomsList";
@@ -46,11 +46,17 @@ const Home = () => {
 
   return (
     <main>
-      <Container className={"justify-content-end d-flex"}>
-        <ModalFoodButton date={date} setDate={setDate} />
-        <Button className={"m-3"} color={"primary"} onClick={toggleModal}>
-          Symptom
-        </Button>
+      <Container>
+        <Row>
+          <Col>
+            <div className={"d-flex flex-row mt-4 justify-content-end"}>
+              <ModalFoodButton date={date} setDate={setDate} setFoodsList={setFoodsList} />
+              <Button color={"primary"} onClick={toggleModal}>
+                Symptom
+              </Button>
+            </div>
+          </Col>
+        </Row>
       </Container>
 
       <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />

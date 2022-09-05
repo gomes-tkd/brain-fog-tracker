@@ -14,7 +14,6 @@ import {
     collection,
     doc,
     deleteDoc,
-    updateDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -122,9 +121,10 @@ export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut
     });
 }
 
-export async function registerFood(foods) {
+export async function registerFood(foods, date) {
     await addDoc(foodsCollectionRef, {
         foods,
+        date,
         userId: auth.currentUser.uid,
     });
 }
@@ -134,14 +134,15 @@ export async function getFoods(setData) {
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 }
 
-
 export async function removeFood(id) {
     const foodRef = doc(db, "foodsList", id);
     await deleteDoc(foodRef);
-    
-export async function editFood(id, foods) {
+}
+
+export async function editFood(id, foods, date) {
     const foodRed = doc(db, "foodsList", id);
     await setDoc(foodRed, {
-        foods
+        foods,
+        date
     });
 }

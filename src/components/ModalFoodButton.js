@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Col,
@@ -10,11 +10,12 @@ import {
   ModalHeader,
   Row }  from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
-import { registerFood } from "../Firebase";
+import { getFoods, registerFood } from "../Firebase";
 
-const ModalFoodButton = ({ date, setDate }) => {
+const ModalFoodButton = ({ setFoodsList }) => {
   const [foods, setFoods] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const foodItems = [
     "Bread",
@@ -43,13 +44,16 @@ const ModalFoodButton = ({ date, setDate }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await registerFood(foods);
+    await registerFood(foods, date);
+    await getFoods(setFoodsList);
+    setDate(new Date());
+    setFoods([]);
     toggleModal();
   }
 
   return (
     <div>
-      <Button color={"primary"} className={"m-3"} onClick={toggleModal}>
+      <Button color={"primary"} className={"me-3"} onClick={toggleModal}>
         Food
       </Button>
 

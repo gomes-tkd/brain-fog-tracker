@@ -24,7 +24,7 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
 
   return (
     <>
-      <Button color={"light"} block onClick={toggleModal}>
+      <Button color={"light"} className={"me-4"} onClick={toggleModal}>
         Edit
       </Button>
 

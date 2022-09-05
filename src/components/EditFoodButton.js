@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import {Button, Col, Container, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Row
+} from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
 import { editFood, getFoods } from "../Firebase";
 
@@ -41,7 +51,7 @@ const EditFoodButton = ({ setFoodsList, id }) => {
 
   return (
     <>
-      <Button color={"light"} block onClick={toggleModal}>
+      <Button className={"me-4"} color={"light"} onClick={toggleModal}>
         Edit
       </Button>
 

@@ -12,28 +12,36 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
     <Container>
       <h2>Symptoms</h2>
       {symptoms && symptoms
-          .sort(sortByDate)
-          .map(({ id, fogginess, anxiety, headache, fatigue, gut }) => (
-          <Row
-            key={id}
-            className={"shadow p-3 mb-3 bg-white rounded pt-3 pb-3 text-center align-items-center justify-content-center"}
-          >
-            <Col>Fogginess: {fogginess}</Col>
-            <Col>Anxiety: {anxiety}</Col>
-            <Col>Headache: {headache}</Col>
-            <Col>Fatigue: {fatigue}</Col>
-            <Col>gut: {gut}</Col>
-            <Col></Col>
-            <Col></Col>
-            <Col></Col>
-            <Col>
+      .sort(sortByDate)
+      .map(({ id, fogginess, anxiety, headache, fatigue, gut }) => (
+        <Row
+          key={id}
+          className={"shadow bg-white rounded mb-3 px-2"}
+        >
+          <Col className={"py-3"}>
+            <div className={"d-flex align-items-center"}>
+              {[
+                { label: "Fogginess", value: fogginess },
+                { label: "Anxiety", value: anxiety },
+                { label: "Headache", value: headache },
+                { label: "Fatigue", value: fatigue },
+                { label: "Gut", value: gut },
+              ].map(({ label, value }) => (
+                <div className={"me-4 pt-2"}>
+                  {label}: {value}
+                </div>
+              ))}
+            </div>
+
+          </Col>
+          <Col className={"py-3"} lg={4}>
+            <div className={"d-flex flex-row justify-content-end"}>
               <EditSymptomButton id={id} setSymptoms={setSymptoms} />
-            </Col>
-            <Col>
               <DeleteSymptomButton id={id} setSymptoms={setSymptoms} />
-            </Col>
-          </Row>
-        ))}
+            </div>
+          </Col>
+        </Row>
+      ))}
     </Container>
   );
 };
