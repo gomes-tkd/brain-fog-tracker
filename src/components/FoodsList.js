@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Row } from "reactstrap";
+import DeleteFoodButton from "./DeleteFoodButton";
 
 const FoodsList = ({ foodsList, setFoodsList }) => {
   function sortByDate(f1, f2) {
@@ -9,12 +10,12 @@ const FoodsList = ({ foodsList, setFoodsList }) => {
   return (
     <Container>
       <h2>Foods</h2>
-      {foodsList && foodsList.map(({foods, id}) => (
+      {foodsList && foodsList.map((foods) => (
         <Row
-          key={id}
+          key={foods.id}
           className={"shadow p-3 mb-3 bg-white rounded pt-3 pb-3 text-center align-items-center justify-content-center"}
         >
-          {foods.map(food => (
+          {foods.foods.map(food => (
             <>
               <Col>
                 {food}
@@ -30,7 +31,7 @@ const FoodsList = ({ foodsList, setFoodsList }) => {
               <Button>Edit</Button>
             </Col>
             <Col className={"ms-3"}>
-              <Button>Delete</Button>
+              <DeleteFoodButton id={foods.id} setFoodsList={setFoodsList} />
             </Col>
           </div>
         </Row>

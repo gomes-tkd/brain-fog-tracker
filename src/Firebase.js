@@ -133,3 +133,8 @@ export async function getFoods(setData) {
     const data = await getDocs(foodsCollectionRef);
     setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
 }
+
+export async function removeFood(id) {
+    const foodRef = doc(db, "foodsList", id);
+    await deleteDoc(foodRef);
+}
