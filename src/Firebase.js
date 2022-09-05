@@ -148,6 +148,11 @@ export async function editFood(id, foods, date) {
     });
 }
 
+export async function getBeverages(setData) {
+    const data = await getDocs(beveragesCollectionRef);
+    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+}
+
 export async function registerBeverages(beverages, date) {
     await addDoc(beveragesCollectionRef, {
         beverages,
