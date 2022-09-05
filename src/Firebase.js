@@ -165,3 +165,8 @@ export async function registerBeverages(beverages, date) {
         userId: auth.currentUser.uid,
     });
 }
+
+export async function removeBeverages(id) {
+    const beveragesRef = doc(db, "beveragesList", id);
+    await deleteDoc(beveragesRef);
+}
