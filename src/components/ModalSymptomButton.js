@@ -29,8 +29,14 @@ const ModalSymptomButton = ({ setSymptoms }) => {
     e.preventDefault();
     await registerSymptom(fogginess, anxiety, headache, fatigue, gut, date);
     await getSymptoms(setSymptoms, auth.currentUser.uid);
+    setFogginess(0);
+    setAnxiety(0);
+    setHeadache(0);
+    setFatigue(0);
+    setGut(0);
     toggleModal();
   }
+
   return (
     <>
       <Button color={"primary"} onClick={toggleModal}>
