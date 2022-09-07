@@ -19,7 +19,7 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
           className={"shadow bg-white rounded mb-3 px-2"}
         >
           <Col className={"py-3"}>
-            <div className={"d-flex align-items-center"}>
+            <div className={"d-flex flex-row flex-wrap align-items-center"}>
               {[
                 { label: "Fogginess", value: fogginess },
                 { label: "Anxiety", value: anxiety },

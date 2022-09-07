@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { registerBeverages } from "../Firebase";
+import {getBeverages, registerBeverages} from "../Firebase";
 import {
   Button,
   Col,
@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
 
-const ModalBeveragesButton = () => {
+const ModalBeveragesButton = ({ setBeveragesList  }) => {
   const [beverages, setBeverages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -37,7 +37,8 @@ const ModalBeveragesButton = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await registerBeverages(beverages, date)
+    await registerBeverages(beverages, date);
+    await getBeverages(setBeveragesList);
     setBeverages([]);
     setDate(new Date());
     toggleModal();

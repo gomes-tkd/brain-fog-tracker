@@ -44,7 +44,7 @@ const EditFoodButton = ({ setFoodsList, id }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await editFood(id, foods);
+    await editFood(id, foods, date);
     await getFoods(setFoodsList);
     toggleModal();
   }

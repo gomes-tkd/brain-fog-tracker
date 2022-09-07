@@ -1,39 +1,18 @@
 import { useEffect, useState } from "react";
-import {
-  Button, Col,
-  Container,
-  Form,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader, Row,
-} from "reactstrap";
-import {getBeverages, getFoods, getSymptoms, registerSymptom} from "../Firebase";
-import RangeInput from "../components/RangeInput";
-import DateTimeInput from "../components/DateTimeInput";
+import { Col, Container, Row } from "reactstrap";
+import { getBeverages, getFoods, getSymptoms } from "../Firebase";
 import SymptomsList from "../components/SymptomsList";
 import ModalFoodButton from "../components/ModalFoodButton";
 import FoodsList from "../components/FoodsList";
 import BeveragesList from "../components/BeveragesList";
 import ModalBeveragesButton from "../components/ModalBeveragesButton";
+import ModalSymptomButton from "../components/ModalSymptomButton";
 
 const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [fogginess, setFogginess] = useState(0);
-  const [anxiety,setAnxiety] = useState(0);
-  const [headache, setHeadache] = useState(0);
-  const [fatigue, setFatigue] = useState(0);
-  const [gut, setGut] = useState(0);
-  const [date, setDate] = useState(new Date());
-
   const [symptoms, setSymptoms] = useState([]);
   const [foodsList, setFoodsList] = useState([]);
   const [beverages, setBeverages] = useState([]);
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-    setDate(new Date());
-  };
+  const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     getSymptoms(setSymptoms);
@@ -41,12 +20,6 @@ const Home = () => {
     getBeverages(setBeverages);
   }, []);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await registerSymptom(fogginess, anxiety, headache, fatigue, gut, date);
-    await getSymptoms(setSymptoms);
-    toggleModal();
-  }
 
   return (
     <main>
@@ -54,11 +27,9 @@ const Home = () => {
         <Row>
           <Col>
             <div className={"d-flex flex-row mt-4 justify-content-end"}>
-              <ModalBeveragesButton />
+              <ModalBeveragesButton setBeveragesList={setBeverages} />
               <ModalFoodButton date={date} setDate={setDate} setFoodsList={setFoodsList} />
-              <Button color={"primary"} onClick={toggleModal}>
-                Symptom
-              </Button>
+              <ModalSymptomButton setSymptoms={setSymptoms} />
             </div>
           </Col>
         </Row>
@@ -77,26 +48,6 @@ const Home = () => {
         setDate={setDate}
       />
 
-      <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>
-          NEW SYMPTOM
-        </ModalHeader>
-        <Form onSubmit={handleSubmit}>
-          <ModalBody>
-            <RangeInput label={"Fogginess"} id={"fogginess"} value={fogginess} setValue={setFogginess} />
-            <RangeInput label={"Anxiety"} id={"anxiety"} value={anxiety} setValue={setAnxiety} />
-            <RangeInput label={"Headache"} id={"headache"} value={headache} setValue={setHeadache} />
-            <RangeInput label={"Fatigue"} id={"fatigue"} value={fatigue} setValue={setFatigue} />
-            <RangeInput label={"Gut"} id={"gut"} value={gut} setValue={setGut} />
-            <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary">
-              Save
-            </Button>
-          </ModalFooter>
-        </Form>
-      </Modal>
     </main>
   );
 };
