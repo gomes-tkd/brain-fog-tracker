@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {getBeverages, registerBeverages} from "../Firebase";
+import {auth, getBeverages, registerBeverages} from "../Firebase";
 import {
   Button,
   Col,
@@ -38,7 +38,7 @@ const ModalBeveragesButton = ({ setBeveragesList  }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await registerBeverages(beverages, date);
-    await getBeverages(setBeveragesList);
+    await getBeverages(setBeveragesList, auth.currentUser.uid);
     setBeverages([]);
     setDate(new Date());
     toggleModal();

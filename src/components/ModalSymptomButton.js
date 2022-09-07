@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getSymptoms, registerSymptom } from "../Firebase";
+import {auth, getSymptoms, registerSymptom} from "../Firebase";
 import {
   Button,
   Form,
@@ -28,7 +28,7 @@ const ModalSymptomButton = ({ setSymptoms }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await registerSymptom(fogginess, anxiety, headache, fatigue, gut, date);
-    await getSymptoms(setSymptoms);
+    await getSymptoms(setSymptoms, auth.currentUser.uid);
     toggleModal();
   }
   return (

@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { getBeverages, getFoods, getSymptoms } from "../Firebase";
+import {
+  getBeverages,
+  getFoods,
+  getSymptoms,
+  auth,
+} from "../Firebase";
 import SymptomsList from "../components/SymptomsList";
 import ModalFoodButton from "../components/ModalFoodButton";
 import FoodsList from "../components/FoodsList";
@@ -14,10 +19,10 @@ const Home = () => {
   const [beverages, setBeverages] = useState([]);
   const [date, setDate] = useState(new Date());
 
-  useEffect(() => {
-    getSymptoms(setSymptoms);
-    getFoods(setFoodsList);
-    getBeverages(setBeverages);
+  useEffect( () => {
+    getSymptoms(setSymptoms, auth.currentUser.uid);
+    getFoods(setFoodsList, auth.currentUser.uid);
+    getBeverages(setBeverages, auth.currentUser.uid);
   }, []);
 
 

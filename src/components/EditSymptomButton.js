@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import RangeInput from "./RangeInput";
 import DateTimeInput from "./DateTimeInput";
-import { editSymptom, getSymptoms } from "../Firebase";
+import {auth, editSymptom, getSymptoms} from "../Firebase";
 
 const EditSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date);
-    await getSymptoms(setSymptoms);
+    await getSymptoms(setSymptoms, auth.currentUser.uid);
     toggleModal();
   }
 

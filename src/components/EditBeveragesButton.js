@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {editBeverages, getBeverages} from "../Firebase";
+import {auth, editBeverages, getBeverages} from "../Firebase";
 import DateTimeInput from "./DateTimeInput";
 import {
   Button,
@@ -38,7 +38,7 @@ const EditBeveragesButton = ({ id, setBeveragesList }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await editBeverages(beverages, date, id);
-    await getBeverages(setBeveragesList);
+    await getBeverages(setBeveragesList, auth.currentUser.uid);
     setBeverages([]);
     setDate(new Date());
     toggleModal();

@@ -11,7 +11,7 @@ import {
   Row
 } from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
-import { editFood, getFoods } from "../Firebase";
+import {auth, editFood, getFoods} from "../Firebase";
 
 const EditFoodButton = ({ setFoodsList, id }) => {
   const [foods, setFoods] = useState([]);
@@ -45,7 +45,7 @@ const EditFoodButton = ({ setFoodsList, id }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await editFood(id, foods, date);
-    await getFoods(setFoodsList);
+    await getFoods(setFoodsList, auth.currentUser.uid);
     toggleModal();
   }
 

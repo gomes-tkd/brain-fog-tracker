@@ -10,7 +10,7 @@ import {
   ModalHeader,
   Row }  from "reactstrap";
 import DateTimeInput from "./DateTimeInput";
-import { getFoods, registerFood } from "../Firebase";
+import {auth, getFoods, registerFood} from "../Firebase";
 
 const ModalFoodButton = ({ setFoodsList }) => {
   const [foods, setFoods] = useState([]);
@@ -45,7 +45,7 @@ const ModalFoodButton = ({ setFoodsList }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await registerFood(foods, date);
-    await getFoods(setFoodsList);
+    await getFoods(setFoodsList, auth.currentUser.uid);
     setDate(new Date());
     setFoods([]);
     toggleModal();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
-import { getFoods, removeFood } from "../Firebase";
+import {auth, getFoods, removeFood} from "../Firebase";
 
 const DeleteFoodButton = ({ id, setFoodsList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const DeleteFoodButton = ({ id, setFoodsList }) => {
             color={"danger"}
             onClick={async () => {
               await removeFood(id);
-              await getFoods(setFoodsList);
+              await getFoods(setFoodsList, auth.currentUser.uid);
             }}
           >
             DELETE
