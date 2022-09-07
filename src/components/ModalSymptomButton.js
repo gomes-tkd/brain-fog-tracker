@@ -22,7 +22,6 @@ const ModalSymptomButton = ({ setSymptoms }) => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-    setDate(new Date());
   };
 
   async function handleSubmit(e) {
@@ -34,6 +33,7 @@ const ModalSymptomButton = ({ setSymptoms }) => {
     setHeadache(0);
     setFatigue(0);
     setGut(0);
+    setDate(new Date());
     toggleModal();
   }
 
