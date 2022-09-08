@@ -22,7 +22,7 @@ const DeleteSymptomButton = ({ id, setSymptoms }) => {
             color={"danger"}
             onClick={async () => {
               await removeSymptom(id);
-              await getSymptoms(setSymptoms, auth.currentUser.uid);
+              await getSymptoms(setSymptoms);
             }}
           >
             DELETE

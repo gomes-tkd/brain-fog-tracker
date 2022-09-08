@@ -38,7 +38,7 @@ const ModalBeveragesButton = ({ setBeveragesList  }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await registerBeverages(beverages, date);
-    await getBeverages(setBeveragesList, auth.currentUser.uid);
+    await getBeverages(setBeveragesList);
     setBeverages([]);
     setDate(new Date());
     toggleModal();

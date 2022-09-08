@@ -27,7 +27,7 @@ const ModalSymptomButton = ({ setSymptoms }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await registerSymptom(fogginess, anxiety, headache, fatigue, gut, date);
-    await getSymptoms(setSymptoms, auth.currentUser.uid);
+    await getSymptoms(setSymptoms);
     setFogginess(0);
     setAnxiety(0);
     setHeadache(0);

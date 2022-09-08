@@ -22,7 +22,7 @@ const DeleteBeveragesButton = ({ id , setBeverages}) => {
             color={"danger"}
             onClick={async () => {
               await removeBeverages(id);
-              await getBeverages(setBeverages, auth.currentUser.uid);
+              await getBeverages(setBeverages);
             }}
           >
             DELETE

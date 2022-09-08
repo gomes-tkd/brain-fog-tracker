@@ -38,7 +38,7 @@ const EditBeveragesButton = ({ id, setBeveragesList }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await editBeverages(beverages, date, id);
-    await getBeverages(setBeveragesList, auth.currentUser.uid);
+    await getBeverages(setBeveragesList);
     setBeverages([]);
     setDate(new Date());
     toggleModal();

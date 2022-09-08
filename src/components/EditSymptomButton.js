@@ -18,7 +18,7 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     await editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date);
-    await getSymptoms(setSymptoms, auth.currentUser.uid);
+    await getSymptoms(setSymptoms);
     toggleModal();
   }
 
@@ -39,12 +39,14 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
             <RangeInput label={"Headache"} id={"headache"} value={headache} setValue={setHeadache} />
             <RangeInput label={"Fatigue"} id={"fatigue"} value={fatigue} setValue={setFatigue} />
             <RangeInput label={"Gut"} id={"gut"} value={gut} setValue={setGut} />
-            <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">
-              Save
-            </Button>
+            <div className={"d-flex align-items-center justify-content-between w-100 "}>
+              <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
+              <Button color="primary">
+                Save
+              </Button>
+            </div>
           </ModalFooter>
         </Form>
       </Modal>
