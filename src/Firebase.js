@@ -30,9 +30,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const symptomsCollectionRef = collection(db, "symptomsList");
-const foodsCollectionRef = collection(db, "foodsList");
-const beveragesCollectionRef = collection(db, "beveragesList");
+const symptomsCollectionRef = collection(db, "symptoms");
+const foodsCollectionRef = collection(db, "foods");
+const beveragesCollectionRef = collection(db, "beverages");
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -103,6 +103,7 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
 }
 
 export async function getSymptoms(setData) {
+
     const querySymptoms = query(
       symptomsCollectionRef,
       where("userId", "==", auth.currentUser.uid)
@@ -113,19 +114,19 @@ export async function getSymptoms(setData) {
 }
 
 export async function removeSymptom(id) {
-    const symp = doc(db, "symptomsList", id);
+    const symp = doc(db, "symptoms", id);
     await deleteDoc(symp);
 }
 
 export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date) {
-    const symptomRef = doc(db, "symptomsList", id);
+    const symptomRef = doc(db, "symptoms",id);
     await updateDoc(symptomRef, {
         fogginess,
         anxiety,
         headache,
         fatigue,
         gut,
-        date
+        date,
     });
 }
 
@@ -148,12 +149,12 @@ export async function getFoods(setData) {
 }
 
 export async function removeFood(id) {
-    const foodRef = doc(db, "foodsList", id);
+    const foodRef = doc(db, "foods", id);
     await deleteDoc(foodRef);
 }
 
 export async function editFood(id, foods, date) {
-    const foodRed = doc(db, "foodsList", id);
+    const foodRed = doc(db, "foods", id);
     await updateDoc(foodRed, {
         foods,
         date
@@ -161,7 +162,7 @@ export async function editFood(id, foods, date) {
 }
 
 export async function editBeverages(beverages, date, id) {
-    const beveragesRef = doc(db, "beveragesList", id);
+    const beveragesRef = doc(db, "beverages", id);
     await updateDoc(beveragesRef, {
         beverages,
         date
@@ -174,7 +175,10 @@ export async function getBeverages(setData) {
       where("userId", "==", auth.currentUser.uid)
     );
     const responseQueryBeverages = await getDocs(queryBeverages);
-    const beverages = responseQueryBeverages.docs.map(doc => ({...doc.data(), id: doc.id}));
+    const beverages = responseQueryBeverages.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id,
+    }));
     setData(beverages);
 }
 
@@ -187,6 +191,6 @@ export async function registerBeverages(beveragesData, date) {
 }
 
 export async function removeBeverages(id) {
-    const beveragesRef = doc(db, "beveragesList", id);
+    const beveragesRef = doc(db, "beverages", id);
     await deleteDoc(beveragesRef);
 }
