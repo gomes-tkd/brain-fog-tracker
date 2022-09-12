@@ -14,7 +14,7 @@ const Home = () => {
   const [beverages, setBeverages] = useState([]);
   const [date, setDate] = useState(new Date());
 
-  useEffect(() => {
+  useEffect( () => {
     getSymptoms(setSymptoms);
     getFoods(setFoodsList);
     getBeverages(setBeverages);

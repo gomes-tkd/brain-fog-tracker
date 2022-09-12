@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
-import { getBeverages, removeBeverages } from "../Firebase";
+import {auth, getBeverages, removeBeverages} from "../Firebase";
 
 const DeleteBeveragesButton = ({ id , setBeverages}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import RangeInput from "./RangeInput";
 import DateTimeInput from "./DateTimeInput";
-import { editSymptom, getSymptoms } from "../Firebase";
+import {auth, editSymptom, getSymptoms} from "../Firebase";
 
 const EditSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,12 +39,14 @@ const EditSymptomButton = ({ id, setSymptoms }) => {
             <RangeInput label={"Headache"} id={"headache"} value={headache} setValue={setHeadache} />
             <RangeInput label={"Fatigue"} id={"fatigue"} value={fatigue} setValue={setFatigue} />
             <RangeInput label={"Gut"} id={"gut"} value={gut} setValue={setGut} />
-            <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">
-              Save
-            </Button>
+            <div className={"d-flex align-items-center justify-content-between w-100 "}>
+              <DateTimeInput label={"Date"} id={"date"} value={date} setValue={setDate} />
+              <Button color="primary">
+                Save
+              </Button>
+            </div>
           </ModalFooter>
         </Form>
       </Modal>

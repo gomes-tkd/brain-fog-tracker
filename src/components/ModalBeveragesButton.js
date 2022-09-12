@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {getBeverages, registerBeverages} from "../Firebase";
+import {auth, getBeverages, registerBeverages} from "../Firebase";
 import {
   Button,
   Col,

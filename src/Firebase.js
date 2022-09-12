@@ -8,12 +8,14 @@ import {
 } from "firebase/auth";
 import {
     addDoc,
-    setDoc,
     getDocs,
     getFirestore,
     collection,
     doc,
     deleteDoc,
+    query,
+    where,
+    updateDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -28,9 +30,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const symptomsCollectionRef = collection(db, "symptomsList");
-const foodsCollectionRef = collection(db, "foodsList");
-const beveragesCollectionRef = collection(db, "beveragesList");
+const symptomsCollectionRef = collection(db, "symptoms");
+const foodsCollectionRef = collection(db, "foods");
+const beveragesCollectionRef = collection(db, "beverages");
 
 export async function createUser(email, password) {
     if (!email || !password) {
@@ -101,18 +103,24 @@ export async function registerSymptom(fogginess, anxiety, headache, fatigue, gut
 }
 
 export async function getSymptoms(setData) {
-    const data = await getDocs(symptomsCollectionRef);
-    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+
+    const querySymptoms = query(
+      symptomsCollectionRef,
+      where("userId", "==", auth.currentUser.uid)
+    );
+    const responseQuerySymptoms = await getDocs(querySymptoms);
+    const symptoms = responseQuerySymptoms.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    setData(symptoms);
 }
 
 export async function removeSymptom(id) {
-    const symp = doc(db, "symptomsList", id);
+    const symp = doc(db, "symptoms", id);
     await deleteDoc(symp);
 }
 
 export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut, date) {
-    const symptomRef = doc(db, "symptomsList", id);
-    await setDoc(symptomRef, {
+    const symptomRef = doc(db, "symptoms",id);
+    await updateDoc(symptomRef, {
         fogginess,
         anxiety,
         headache,
@@ -122,51 +130,67 @@ export async function editSymptom(id, fogginess, anxiety, headache, fatigue, gut
     });
 }
 
-export async function registerFood(foods, date) {
+export async function registerFood(foodsData, date) {
     await addDoc(foodsCollectionRef, {
-        foods,
+        foods: foodsData,
         date,
         userId: auth.currentUser.uid,
     });
 }
 
 export async function getFoods(setData) {
-    const data = await getDocs(foodsCollectionRef);
-    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    const queryFoods = query(
+      foodsCollectionRef,
+      where("userId", "==", auth.currentUser.uid)
+    );
+    const responseQueryFoods = await getDocs(queryFoods);
+    const foods = responseQueryFoods.docs.map(doc => ({...doc.data(), id: doc.id}));
+    setData(foods);
 }
 
 export async function removeFood(id) {
-    const foodRef = doc(db, "foodsList", id);
+    const foodRef = doc(db, "foods", id);
     await deleteDoc(foodRef);
 }
 
 export async function editFood(id, foods, date) {
-    const foodRed = doc(db, "foodsList", id);
-    await setDoc(foodRed, {
+    const foodRed = doc(db, "foods", id);
+    await updateDoc(foodRed, {
         foods,
         date
     });
 }
 
 export async function editBeverages(beverages, date, id) {
-    const beveragesRef = doc(db, "beveragesList", id);
-    await setDoc(beveragesRef, { beverages, date });
+    const beveragesRef = doc(db, "beverages", id);
+    await updateDoc(beveragesRef, {
+        beverages,
+        date
+    });
 }
 
 export async function getBeverages(setData) {
-    const data = await getDocs(beveragesCollectionRef);
-    setData(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    const queryBeverages = query(
+      beveragesCollectionRef,
+      where("userId", "==", auth.currentUser.uid)
+    );
+    const responseQueryBeverages = await getDocs(queryBeverages);
+    const beverages = responseQueryBeverages.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id,
+    }));
+    setData(beverages);
 }
 
-export async function registerBeverages(beverages, date) {
+export async function registerBeverages(beveragesData, date) {
     await addDoc(beveragesCollectionRef, {
-        beverages,
+        beverages: beveragesData,
         date,
         userId: auth.currentUser.uid,
     });
 }
 
 export async function removeBeverages(id) {
-    const beveragesRef = doc(db, "beveragesList", id);
+    const beveragesRef = doc(db, "beverages", id);
     await deleteDoc(beveragesRef);
 }
