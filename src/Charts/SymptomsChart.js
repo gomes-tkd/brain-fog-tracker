@@ -64,14 +64,14 @@ const SymptomsChart = ({symptoms}) => {
         {
           label: "Fatigue",
           data: symptoms.sort(sortByDate).map(({fatigue}) => fatigue),
-          borderColor: "#33cc33",
-          backgroundColor: "rgba(41, 163, 41, 0.5)",
+          borderColor: "#bf00ff",
+          backgroundColor: "rgba(153, 0, 204, 0.5)",
         },
         {
           label: "Gut",
           data: symptoms.sort(sortByDate).map(({gut}) => gut),
-          borderColor: "#33cc33",
-          backgroundColor: "rgba(41, 163, 41, 0.5)",
+          borderColor: "#ff00bf",
+          backgroundColor: "rgba(230, 0, 172, 0.5)",
         },
       ],
   };
