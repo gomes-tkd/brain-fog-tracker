@@ -109,7 +109,10 @@ export async function getSymptoms(setData) {
       where("userId", "==", auth.currentUser.uid)
     );
     const responseQuerySymptoms = await getDocs(querySymptoms);
-    const symptoms = responseQuerySymptoms.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    const symptoms = responseQuerySymptoms.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+    }));
     setData(symptoms);
 }
 
@@ -144,7 +147,10 @@ export async function getFoods(setData) {
       where("userId", "==", auth.currentUser.uid)
     );
     const responseQueryFoods = await getDocs(queryFoods);
-    const foods = responseQueryFoods.docs.map(doc => ({...doc.data(), id: doc.id}));
+    const foods = responseQueryFoods.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }));
     setData(foods);
 }
 

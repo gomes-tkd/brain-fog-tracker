@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {auth, getSymptoms, registerSymptom} from "../Firebase";
+import { getSymptoms, registerSymptom } from "../Firebase";
 import {
   Button,
   Form,

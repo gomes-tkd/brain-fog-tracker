@@ -7,6 +7,7 @@ import FoodsList from "../components/FoodsList";
 import BeveragesList from "../components/BeveragesList";
 import ModalBeveragesButton from "../components/ModalBeveragesButton";
 import ModalSymptomButton from "../components/ModalSymptomButton";
+import SymptomsChart from "../Charts/SymptomsChart";
 
 const Home = () => {
   const [symptoms, setSymptoms] = useState([]);
@@ -48,6 +49,7 @@ const Home = () => {
         setDate={setDate}
       />
 
+      <SymptomsChart symptoms={symptoms} />
     </main>
   );
 };
