@@ -1,7 +1,9 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
+import format from "date-fns/format";
 import DeleteSymptomButton from "./DeleteSymptomButton";
 import EditSymptomButton from "./EditSymptomButton";
+import SymptomsChart from "../Charts/SymptomsChart";
 
 const SymptomsList = ({ symptoms, setSymptoms }) => {
   function sortByDate(s1, s2) {
@@ -13,7 +15,7 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
       <h2>Symptoms</h2>
       {symptoms && symptoms
       .sort(sortByDate)
-      .map(({ id, fogginess, anxiety, headache, fatigue, gut }) => (
+      .map(({ id, fogginess, anxiety, headache, fatigue, gut, date }) => (
         <Row
           key={id}
           className={"shadow bg-white rounded mb-3 px-2"}
@@ -36,6 +38,7 @@ const SymptomsList = ({ symptoms, setSymptoms }) => {
           </Col>
           <Col className={"py-3"} lg={4}>
             <div className={"d-flex flex-row justify-content-end"}>
+              {format(date.toDate(), "Pp")}
               <EditSymptomButton id={id} setSymptoms={setSymptoms} />
               <DeleteSymptomButton id={id} setSymptoms={setSymptoms} />
             </div>
