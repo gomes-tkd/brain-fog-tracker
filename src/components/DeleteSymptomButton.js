@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {auth, getSymptoms, removeSymptom} from "../Firebase";
+import { getSymptoms, removeSymptom } from "../Firebase";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 const DeleteSymptomButton = ({ id, setSymptoms }) => {

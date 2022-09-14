@@ -8,12 +8,15 @@ import BeveragesList from "../components/BeveragesList";
 import ModalBeveragesButton from "../components/ModalBeveragesButton";
 import ModalSymptomButton from "../components/ModalSymptomButton";
 import SymptomsChart from "../Charts/SymptomsChart";
+import BeveragesChart from "../Charts/BeveragesChart";
 
 const Home = () => {
   const [symptoms, setSymptoms] = useState([]);
   const [foodsList, setFoodsList] = useState([]);
   const [beverages, setBeverages] = useState([]);
   const [date, setDate] = useState(new Date());
+
+
 
   useEffect( () => {
     getSymptoms(setSymptoms);
@@ -50,6 +53,7 @@ const Home = () => {
       />
 
       <SymptomsChart symptoms={symptoms} />
+      <BeveragesChart beverages={beverages} />
     </main>
   );
 };

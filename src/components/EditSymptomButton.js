@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import RangeInput from "./RangeInput";
 import DateTimeInput from "./DateTimeInput";
-import {auth, editSymptom, getSymptoms} from "../Firebase";
+import { editSymptom, getSymptoms } from "../Firebase";
 
 const EditSymptomButton = ({ id, setSymptoms }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

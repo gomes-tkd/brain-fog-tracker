@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {auth, editBeverages, getBeverages} from "../Firebase";
+import { editBeverages, getBeverages } from "../Firebase";
 import DateTimeInput from "./DateTimeInput";
 import {
   Button,
