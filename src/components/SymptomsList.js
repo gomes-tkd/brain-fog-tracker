@@ -3,7 +3,6 @@ import { Col, Container, Row } from "reactstrap";
 import format from "date-fns/format";
 import DeleteSymptomButton from "./DeleteSymptomButton";
 import EditSymptomButton from "./EditSymptomButton";
-import SymptomsChart from "../Charts/SymptomsChart";
 
 const SymptomsList = ({ symptoms, setSymptoms }) => {
   function sortByDate(s1, s2) {

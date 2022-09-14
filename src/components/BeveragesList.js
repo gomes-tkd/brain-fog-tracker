@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge, Col, Container, Row } from "reactstrap";
 import DeleteBeveragesButton from "./DeleteBeveragesButton";
 import EditBeveragesButton from "./EditBeveragesButton";
+import format from "date-fns/format";
 
 const BeveragesList = ({ beverages, setBeverages }) => {
 
@@ -9,12 +10,14 @@ const BeveragesList = ({ beverages, setBeverages }) => {
     return b2.date.toDate().getTime() - b1.date.toDate().getTime();
   }
 
+  console.log()
+
   return (
     <Container>
       <h2>Beverages</h2>
       {beverages && beverages
       .sort(sortByDate)
-      .map(({beverages, id}) => (
+      .map(({beverages, id, date}) => (
         <Row
           key={id}
           className={"shadow px-2 mb-3 bg-white rounded align-items-center"}
@@ -33,6 +36,7 @@ const BeveragesList = ({ beverages, setBeverages }) => {
           </Col>
           <Col lg={4}>
             <div className={"d-flex justify-content-end"}>
+              {format(date.toDate(), "Pp")}
               <EditBeveragesButton id={id} setBeveragesList={setBeverages} />
               <DeleteBeveragesButton id={id} setBeverages={setBeverages} />
             </div>
