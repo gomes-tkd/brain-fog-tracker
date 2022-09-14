@@ -1,5 +1,5 @@
-import React from 'react';
-import { HeatMapGrid } from 'react-grid-heatmap';
+import React from "react";
+import { HeatMapGrid } from "react-grid-heatmap";
 import format from "date-fns/format";
 
 const BeveragesChart = ({ beverages }) => {
@@ -8,7 +8,7 @@ const BeveragesChart = ({ beverages }) => {
   }
 
   const xLabels = beverages.sort(sortByDate).map(({ date }) => format(date.toDate(), "Pp"));
-  const yLabels = ['Coffee', 'Soft Drink', 'Alcohol'];
+  const yLabels = ["Coffee", "Soft Drink", "Alcohol"];
   const data = ["Coffee", "Soft Drink", "Alcohol"].map((beverage) => (
     beverages.map(({ beverages }) => beverages.includes(beverage) ? 100 : 0)
   ));
@@ -26,22 +26,22 @@ const BeveragesChart = ({ beverages }) => {
         yLabels={yLabels}
         data={data}
         xLabelsStyle={() => ({
-          color: '#777',
-          fontSize: '.8rem'
+          color: "#777",
+          fontSize: ".8rem"
         })}
         yLabelsStyle={(index) => ({
-          fontSize: '.7rem',
-          textTransform: 'uppercase',
-          color: '#777'
+          fontSize: ".7rem",
+          textTransform: "uppercase",
+          color: "#777"
         })}
         cellStyle={(_x, _y, ratio) => ({
           background: `rgb(12, 160, 44, ${ratio})`,
-          fontSize: '.8rem',
+          fontSize: ".8rem",
           color: `rgb(0, 0, 0, ${ratio / 2 + 0.4})`
         })}
-        cellHeight='2rem'
-        xLabelsPos='bottom'
-        yLabelsPos='left'
+        cellHeight="2rem"
+        xLabelsPos="bottom"
+        yLabelsPos="left"
       />
     </div>
   );

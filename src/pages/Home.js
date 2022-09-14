@@ -9,10 +9,11 @@ import ModalBeveragesButton from "../components/ModalBeveragesButton";
 import ModalSymptomButton from "../components/ModalSymptomButton";
 import SymptomsChart from "../Charts/SymptomsChart";
 import BeveragesChart from "../Charts/BeveragesChart";
+import FoodsChart from "../Charts/FoodsChart";
 
 const Home = () => {
   const [symptoms, setSymptoms] = useState([]);
-  const [foodsList, setFoodsList] = useState([]);
+  const [foods, setFoods] = useState([]);
   const [beverages, setBeverages] = useState([]);
   const [date, setDate] = useState(new Date());
 
@@ -20,7 +21,7 @@ const Home = () => {
 
   useEffect( () => {
     getSymptoms(setSymptoms);
-    getFoods(setFoodsList);
+    getFoods(setFoods);
     getBeverages(setBeverages);
   }, []);
 
@@ -32,7 +33,7 @@ const Home = () => {
           <Col>
             <div className={"d-flex flex-row mt-4 justify-content-end"}>
               <ModalBeveragesButton setBeveragesList={setBeverages} />
-              <ModalFoodButton date={date} setDate={setDate} setFoodsList={setFoodsList} />
+              <ModalFoodButton date={date} setDate={setDate} setFoodsList={setFoods} />
               <ModalSymptomButton setSymptoms={setSymptoms} />
             </div>
           </Col>
@@ -41,8 +42,8 @@ const Home = () => {
 
       <SymptomsList symptoms={symptoms} setSymptoms={setSymptoms} />
       <FoodsList
-        foodsList={foodsList}
-        setFoodsList={setFoodsList}
+        foodsList={foods}
+        setFoodsList={setFoods}
         date={date} setDate={setDate}
       />
       <BeveragesList
@@ -53,6 +54,7 @@ const Home = () => {
       />
 
       <SymptomsChart symptoms={symptoms} />
+      <FoodsChart foods={foods} />
       <BeveragesChart beverages={beverages} />
     </main>
   );
